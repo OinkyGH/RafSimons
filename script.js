@@ -25,3 +25,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelectorAll('.fade-in, .slide-up').forEach(el => observer.observe(el));
 });
+
+
+const riotJacket = document.getElementById('riotJacket');
+const priceTag = document.getElementById('priceTag');
+
+riotJacket.addEventListener('mouseenter', () => {
+  gsap.to(priceTag, {
+    duration: 0.4,
+    scale: 1,
+    ease: "back.out(1.7)",
+  });
+});
+
+riotJacket.addEventListener('mouseleave', () => {
+  gsap.to(priceTag, {
+    duration: 0.3,
+    scale: 0,
+    ease: "back.in(1.7)",
+  });
+});
+
+//hover ani pop out on season-card
+
+
+  gsap.to("#priceTag::after", { y: -20 }); 
+
+
+  card.addEventListener('mouseleave', () => {
+    gsap.to(card, {
+      scale: 1,
+      boxShadow: '0 0 0 rgba(0,0,0,0)',
+      duration: 0.01,         // shorter duration
+      ease: 'power1.out',
+      zIndex: 1,
+      overwrite: 'auto'
+    });
+  });
+
+
+
+

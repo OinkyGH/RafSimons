@@ -8,6 +8,66 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
+
+<script>
+    // Scrollanimation -- fadein text and media
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // FW2001 text items
+  gsap.utils.toArray(".season-info > *").forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30 },
+      {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: "power2.out"
+      }
+    );
+  });
+
+  // Season cards
+  gsap.utils.toArray(".season-card").forEach((card, i) => {
+    gsap.fromTo(card,
+      { opacity: 0, y: 30 },
+      {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: i * 0.1,
+        ease: "power2.out"
+      }
+    );
+  });
+
+  // Biography container (slower, subtler)
+  gsap.fromTo("#bio .section-container",
+    { opacity: 0, y: 30 },
+    {
+      scrollTrigger: {
+        trigger: "#bio",
+        start: "top 80%",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power1.out"
+    }
+  );
+});
+</script>
+
 <body>
     <div class="overlay"></div>
     <!-- Animated Menu Button -->
@@ -54,12 +114,35 @@
         <!-- Featured Season Section -->
         <section class="season-feature fade-in">
             <div class="season-image">
-                <div style="height: 500px; display: flex; align-items: center; justify-content: center;">
+                <div style="position: relative; height: 500px; display: flex; align-items: center; justify-content: center;">
                     <img 
                         src="assets/riotriotbomber.png" 
                         alt="RIOT RIOT RIOT Bomber Jacket"
                         style="max-height: 100%; max-width: 100%; object-fit: contain;"
+                        id="riotJacket"
                     >
+                    <div id="priceTag"
+                     
+                    style="
+           
+           position: absolute;
+        top: -20px;           
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+        transform-origin: center bottom;
+        background: #e63946;   
+        color: #fff;
+        padding: 6px 14px;     
+        border-radius: 4px;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        pointer-events: none;
+        user-select: none;
+      ">
+            $47,000
+        </div>
                 </div>
                 <div class="season-info">
                     <h2>FW2001 RIOT RIOT RIOT</h2>
@@ -72,6 +155,23 @@
 
         <!-- Other Iconic Seasons -->
         <section class="season-grid">
+        <!-- fw1998 -->
+              <div class="season-card" onclick="window.location.href='fw1998.html';">
+        <div class="card-content">
+            <h3>FW1998 "The Man-Machine"</h3>
+            <p>Minimalist tailoring with techno-inspired details, featuring slim ties and sharp silhouettes, evoking Kraftwerk’s futuristic aesthetic</p>
+            <div class="card-hover-effect"></div>
+        </div>
+    </div>
+    <!-- ss2002 -->
+       <div class="season-card" onclick="window.location.href='fw1998.html';">
+        <div class="card-content">
+            <h3>SS2002 — “Woe Unto Those Who Spit on the Fear Generation... The Wind Will Blow It Back”</h3>
+            <p>Dystopian utilitarian pieces with graphic prints and layered construction, expressing political unease and post-9/11 anxiety</p>
+            <div class="card-hover-effect"></div>
+        </div>
+    </div>
+    <!-- ss2003 -->
             <div class="season-card" onclick="window.location.href='ss2003.html';">
         <div class="card-content">
             <h3>SS2003 "Consumed"</h3>
@@ -79,7 +179,7 @@
             <div class="card-hover-effect"></div>
         </div>
     </div>
-            
+            <!-- fw2003 -->
               <div class="season-card" onclick="window.location.href='fw2003.html';">
         <div class="card-content">
             <h3>FW2003 "Closer"</h3>
@@ -87,11 +187,12 @@
             <div class="card-hover-effect"></div>
         </div>
     </div>
+    <!-- aw2004 -->
             <div class="season-card" onclick="window.location.href='aw2004.html';" >
                 <h3>AW2004 "Waves"</h3>
-                <p>(Add brief description and key pieces)</p>
+                <p>Oversized silhouettes with graphic slogans and distressed fabrics, blending rebellious streetwear with introspective themes</p>
             </div>
-
+<!-- ss2005 -->
            <div class="season-card" onclick="window.location.href='ss2005.html';">
         <div class="card-content">
             <h3>SS2005 "History of My World"</h3>
@@ -111,10 +212,14 @@
                 <div class="bio-grid">
                     <!-- Left Column - Portrait -->
                     <div class="bio-portrait">
-                        <div class="img-placeholder" style="background: #222; height: 500px; display: flex; align-items: center; justify-content: center; color: #fff;">
-                            [PORTRAIT OF RAF SIMONS]
+                        <div class="img-placeholder" style="background: #222;  display: flex; align-items: center; justify-content: center; color: #fff;">
+                            <img 
+                        src="assets/rafsimons_portrait.png" 
+                        alt="RIOT RIOT RIOT Bomber Jacket"
+                        style="max-height: 100%; max-width: 100%; object-fit: contain;"
+                        >
                         </div>
-                        <p class="caption">Raf Simons, 2020</p>
+                        <p class="caption">Raf Simons, 2018</p>
                     </div>
                     
                     <!-- Right Column - Text Content -->
@@ -209,5 +314,95 @@
     </main>
 
     <script src="./script.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+<script>
+    // jacket ani pop out
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: "#riotJacket",
+      start: "top 80%",
+      toggleActions: "play none none none",
+      // if you want it to reset when scrolling back up:
+      // toggleActions: "play reverse play reverse",
+    }
+  })
+  .from("#riotJacket", {
+    y: 100,              
+    opacity: 0,
+    scale: 0.8,
+    ease: "power3.out",
+    duration: 0.8,
+    immediateRender: false   // ← prevents pre-applying the from() state
+  })
+  .to("#riotJacket", {
+    scale: 1.05,
+    ease: "elastic.out(1, 0.4)",
+    duration: 0.6
+  })
+  .to("#riotJacket", {
+    scale: 1,
+    ease: "elastic.out(1, 0.4)",
+    duration: 0.6
+  });
+
+  // force a refresh in case user reloads mid-page
+  ScrollTrigger.refresh();
+});
+</script>
+
+
+<script>
+  const cards = document.querySelectorAll('.season-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        scale: 1.05,
+        boxShadow: '0 12px 24px rgba(0,0,0,0.2)',
+        duration: 0.001,
+        ease: 'power1.out',
+        zIndex: 10
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        scale: 1,
+        boxShadow: '0 0 0 rgba(0,0,0,0)',
+        duration: 0.001,
+        ease: 'power1.inOut',
+        zIndex: 1
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+  barba.init({
+    transitions: [{
+      name: 'fade',
+      leave(data) {
+        return gsap.to(data.current.container, {
+          opacity: 0
+        });
+      },
+      enter(data) {
+        return gsap.from(data.next.container, {
+          opacity: 0
+        });
+      }
+    }]
+  });
+</script>
+
 </body>
 </html>

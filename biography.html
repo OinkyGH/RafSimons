@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GSAP Hover Price Tag</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+  body {
+    display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0;
+  }
+  .container {
+    position: relative;
+    width: 300px;
+  }
+  img {
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+  #priceTag {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: black;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    pointer-events: none;
+    user-select: none;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://via.placeholder.com/300x400.png?text=Riot+Riot+Bomber" alt="Riot Riot Bomber" id="jacketImg" />
+    <div id="priceTag">$47,000</div>
+  </div>
+
+<script>
+  const jacketImg = document.getElementById('jacketImg');
+  const priceTag = document.getElementById('priceTag');
+
+  jacketImg.addEventListener('mouseenter', () => {
+    gsap.to(priceTag, { duration: 0.4, scale: 1, ease: "back.out(1.7)" });
+  });
+
+  jacketImg.addEventListener('mouseleave', () => {
+    gsap.to(priceTag, { duration: 0.3, scale: 0, ease: "back.in(1.7)" });
+  });
+</script>
+</body>
+</html>

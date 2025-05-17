@@ -20,8 +20,54 @@ body {
     line-height: 1.6;
 }
 
+#priceTag {
+  position: relative;
+}
+.priceTagArrow {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #e63946;
+}
+
+
+
+
+/* tag 57k riot riot */
+#priceTag::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;               /* sits flush under the tag */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #e63946;  /* same red as background */
+}
+
+#riotJacket {
+    margin-top: -85px;
+    margin-left: -10px;
+  transition: transform 0.4s ease-out;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+
+
 /* Season Card Hover Effects */
 .season-card {
+    
+  transition: transform 0.2s ease; /* Optional fallback */
+  will-change: transform;
+
+transform-origin: center center;
     position: relative;
     overflow: hidden;
     cursor: pointer;
@@ -39,10 +85,7 @@ body {
     transition: opacity 0.4s var(--easing);
 }
 
-.season-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-}
+
 
 .season-card:hover .card-hover {
     opacity: 1;
@@ -317,6 +360,7 @@ body.menu-open .overlay {
 
 .season-image {
     margin-bottom: 2rem;
+    
 }
 
 .grail-text {
@@ -468,4 +512,14 @@ blockquote {
     .bio-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+
+
+.season-info > * ,
+.season-grid .season-card,
+#bio .section-container {
+  opacity: 0;
+  y: 30px; /* GSAP animation scroll */
 }
