@@ -1,4 +1,22 @@
 /* Reset and Base Styles */
+/* Add this FIRST in your CSS file */
+#bio a,
+#bio a:link,
+#bio a:visited,
+#bio a:hover,
+#bio a:active {
+  all: unset !important; /* Completely reset all link styles */
+  color: #3399ff !important; /* Force blue color */
+  text-decoration: none !important;
+  cursor: pointer !important;
+  font-style: italic !important;
+}
+
+#bio .bio-timeline p a {
+  display: inline !important; /* Ensure proper inline behavior */
+}
+
+
 :root {
     --primary-color: #111111;
     --accent-color: #ff5555;
@@ -36,6 +54,39 @@ body {
 }
 
 
+
+
+/*ani bio */
+
+.bio-portrait {
+  opacity: 0;
+  animation-duration: 0.3s;
+  transform: translateY(20px);
+}
+
+.bio-timeline {
+  opacity: 0;
+}
+
+.bio-quote {
+  opacity: 0;
+  transform: scale(0.90);
+}
+
+/* Active states */
+.bio-portrait.animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bio-timeline.animated {
+  opacity: 1;
+}
+
+.bio-quote.animated {
+  opacity: 1;
+  transform: scale(1);
+}
 
 
 /* tag 57k riot riot */
@@ -119,9 +170,6 @@ transform-origin: center center;
     color: var(--accent-color);
 }
 
-.philosophy-list li:hover {
-    transform: translateX(10px);
-}
 
 
 
@@ -176,15 +224,38 @@ transform-origin: center center;
 
 /* Change of Links color in Bio */
 
-.bio-timeline a {
-    color: #3399ff; 
-    text-decoration: none; 
-    font-style: italic;
+
+
+
+
+
+/* 1. Reset paragraph styles */
+.bio-timeline p {
+  text-decoration: none !important;
+  display: inline; /* Prevents full-width underlines */
 }
 
-.bio-timeline a:hover {
-    text-decoration: underline; 
-    opacity: 0.7;
+/* 2. Target ONLY the links */
+.bio-timeline p a {
+  color: #3399ff !important;
+  text-decoration: none !important;
+  font-style: italic !important;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s var(--easing);
+  display: inline; /* Ensures underline only on link text */
+}
+
+/* 3. Hover state */
+.bio-timeline p a:hover {
+  color: #66b3ff !important;
+  border-bottom: 1px solid #66b3ff; /* Single-line underline */
+}
+
+/* 4. Nuclear option for stubborn cases */
+#bio .timeline-item p {
+  all: unset;
+  display: block;
+  margin-bottom: 1em; /* Adjust spacing as needed */
 }
 
 
@@ -522,4 +593,84 @@ blockquote {
 #bio .section-container {
   opacity: 0;
   y: 30px; /* GSAP animation scroll */
+}
+
+
+/* IMPORTANT FOR biography.html visibility fix -- gsap override */
+.content-section {
+  opacity: 1 !important; /* Override GSAP */
+  visibility: visible !important;
+}
+
+/* manji ptikaz bio */
+.content-wrapper {
+  position: relative;
+  z-index: 100;
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-container {
+  display: block !important;
+}
+/* ===== BIOGRAPHY.HTML SPECIFIC FIXES ===== */
+#bio {
+  position: relative;
+  z-index: 50; /* Ensure content appears above overlay */
+}
+
+#bio .section-container {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.bio-content {
+  position: relative;
+  z-index: 100;
+}
+
+/* Timeline line visibility */
+.bio-timeline {
+  border-left: 2px solid var(--accent-color) !important;
+}
+
+/* Force text visibility */
+#bio * {
+  color: var(--text-light) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Override GSAP initial settings */
+.content-section {
+  opacity: 1 !important;
+  transform: none !important; }
+
+
+/* Smooth transition */
+
+.barba-leave-active {
+  position: absolute;
+  width: 100%;
+}
+
+.barba-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition {
+  animation: pageEnter 0.6s var(--easing) forwards;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

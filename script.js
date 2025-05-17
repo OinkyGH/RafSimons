@@ -32,6 +32,7 @@ const priceTag = document.getElementById('priceTag');
 
 riotJacket.addEventListener('mouseenter', () => {
   gsap.to(priceTag, {
+    y: -25,
     duration: 0.4,
     scale: 1,
     ease: "back.out(1.7)",
@@ -49,7 +50,7 @@ riotJacket.addEventListener('mouseleave', () => {
 //hover ani pop out on season-card
 
 
-  gsap.to("#priceTag::after", { y: -20 }); 
+  
 
 
   card.addEventListener('mouseleave', () => {
@@ -62,6 +63,7 @@ riotJacket.addEventListener('mouseleave', () => {
       overwrite: 'auto'
     });
   });
+
 
 
 
