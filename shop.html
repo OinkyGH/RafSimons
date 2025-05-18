@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SHOP — Raf Simons Archive</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <!-- Header with Menu + Cart Icon -->
+  <header class="header">
+    <div class="header-controls">
+      <i id="cartIcon" class="fas fa-shopping-cart"></i>
+      <div class="menu-btn">
+        <div class="menu-btn__line"></div>
+        <div class="menu-btn__line"></div>
+        <div class="menu-btn__line"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <ul class="menu-nav">
+      <li class="menu-nav__item"><a href="index.html">Home</a></li>
+      <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+      <li class="menu-nav__item"><a href="collaborations.html">Collaborations</a></li>
+      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <!-- Page Title + Season Filter -->
+    <section style="text-align:center; padding:2rem 0;">
+      <h1 style="letter-spacing:0.2em; text-transform:uppercase;">Shop</h1>
+      <select class="season-selector" id="seasonFilter" style="max-width:200px; margin:1rem auto; display:block;">
+        <option value="">All Seasons</option>
+        <option value="fw2001">FW2001 RIOT RIOT RIOT</option>
+        <option value="fw1998">FW1998 The Man-Machine</option>
+        <option value="ss2002">SS2002 Woe Unto Those...</option>
+        <option value="ss2003">SS2003 Consumed</option>
+        <option value="fw2003">FW2003 Closer</option>
+        <option value="aw2004">AW2004 Waves</option>
+        <option value="ss2005">SS2005 History of My World</option>
+      </select>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="season-grid" id="productsGrid" style="padding-bottom:4rem;">
+      <!-- JS will inject .shop-card items here -->
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+  <script>
+    // 1) Cart icon behavior
+    document.getElementById('cartIcon').onclick = () => location.href = 'cart.html';
+
+    // 2) Define your products manually here:
+    const products = [
+      {
+        id: 1,
+        title: "FW2001 Riot Bomber Jacket",
+        description: "Iconic bomber from Raf's FW2001 Riot Riot Riot collection.",
+        price: 48000,
+        image: "assets/riotriotbomber.png",
+        season: "fw2001"
+      },
+      {
+        id: 2,
+        title: "SS2003 Consumed Hoodie",
+        description: "Consumed print hoodie from SS2003 collection.",
+        price: 2000,
+        image: "assets/consumedhoodie.png",
+        season: "ss2003"
+      },
+      {
+        id: 3,
+        title: "AW2003 Bauhaus Runway Knit Turtleneck",
+        description: "Graphics from Joy Division’s Closer album.",
+        price: 8130,
+        image: "img/fw2003-shirt.jpg",
+        season: "fw2003"
+      },
+      // …add up to 28 items…
+    ];
+
+    // 3) Save for detail page and initial render
+    localStorage.setItem('allProducts', JSON.stringify(products));
+    window.allProducts = products;
+    renderProducts(products);
+
+    // 4) Render function (unchanged)
+    function renderProducts(list) {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = '';
+      list.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'shop-card';
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+          <div class="card-content" style="position:relative;overflow:hidden;">
+            <img src="${p.image}" alt="${p.title}" style="width:100%;height:200px;object-fit:contain;" />
+            <h3>
+              <a href="product.html?id=${p.id}"
+                 style="color:inherit;text-decoration:none;">
+                ${p.title}
+              </a>
+            </h3>
+            <p style="font-size:0.9rem;min-height:3rem;">${p.description}</p>
+            <p style="font-weight:bold;">$${p.price}</p>
+            <button class="add-btn" style="padding:0.5rem 1rem;cursor:pointer;">Add to Cart</button>
+          </div>`;
+        grid.appendChild(card);
+
+        // Click whole card to detail
+        card.addEventListener('click', () => {
+          window.location.href = `product.html?id=${p.id}`;
+        });
+
+        // Prevent detail-click when adding to cart
+        card.querySelector('.add-btn').addEventListener('click', e => {
+          e.stopPropagation();
+          const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+          const exists = cart.find(i=>i.id===p.id);
+          if (exists) exists.qty++;
+          else cart.push({id:p.id,title:p.title,price:p.price,image:p.image,qty:1});
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Added to cart');
+        });
+
+        // GSAP hover pop-out
+        gsap.set(card, { transformOrigin:'center center' });
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, { scale:1.05, boxShadow:'0 12px 24px rgba(0,0,0,0.2)', duration:0.2 });
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, { scale:1, boxShadow:'none', duration:0.2 });
+        });
+      });
+
+      // Scroll-trigger fade+slide
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.shop-card').forEach((card,i) => {
+        gsap.from(card, {
+          scrollTrigger:{ trigger: card, start:'top 90%' },
+          opacity:0, y:40, duration:0.6, delay:i*0.05, ease:'power2.out'
+        });
+      });
+    }
+
+    // 5) Season filter logic (unchanged)
+    document.getElementById('seasonFilter').onchange = e => {
+      const val = e.target.value;
+      renderProducts(val 
+        ? window.allProducts.filter(p => p.season === val) 
+        : window.allProducts
+      );
+    };
+  </script>
+</body>
+</html>

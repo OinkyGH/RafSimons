@@ -5,72 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Raf Simons – Biography</title>
   <link rel="stylesheet" href="./style.css"/>
- <script src="https://unpkg.com/@barba/core"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-
-<style>
-  /* Transition styles */
-  .transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--accent-color);
-    z-index: 9999;
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
-</style>
+  <style>
+    /* Transition styles */
+    .transition-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-color);
+      z-index: 9999;
+      transform: scaleY(0);
+      transform-origin: bottom;
+    }
+  </style>
 </head>
 
-
-// Add to biography.html before </body>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Portrait animation
-  gsap.to(".bio-portrait", {
-    opacity: 1,
-    y: 0,
-    duration: 1.2,
-    ease: "power4.out",
-    scrollTrigger: {
-      trigger: ".bio-portrait",
-      start: "top 80%"
-    }
-  });
-
-  // Timeline items cascade
-  gsap.utils.toArray(".timeline-item").forEach((item, index) => {
-    gsap.from(item, {
-      opacity: 0,
-      x: -35,
-      duration: 0.6,
-      delay: index * 0.15,
-      ease: "back.out(1.2)",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 90%"
-      }
-    });
-  });
-
-  // Quote block animation
-  gsap.from(".bio-quote", {
-    opacity: 0,
-    scale: 0.98,
-    duration: 1,
-    ease: "elastic.out(1, 0.4)",
-    scrollTrigger: {
-      trigger: ".bio-quote",
-      start: "top 80%"
-    }
-  });
-});
-</script>
-  
 <body>
   <!-- Overlay & Menu Button (same as index.html) -->
   <div class="overlay"></div>
@@ -85,90 +39,108 @@ document.addEventListener("DOMContentLoaded", () => {
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="menu-nav">
-      <li class="menu-nav__item"><a href="index.html"data-barba-preload>Home</a></li>
+      <li class="menu-nav__item"><a href="index.html" data-barba-preload>Home</a></li>
       <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
-      <li class="menu-nav__item"><a href="gallery.html">Gallery</a></li>
-      <li class="menu-nav__item"><a href="archive.html">Archive</a></li>
       <li class="menu-nav__item"><a href="collaborations.html">Collaborations</a></li>
       <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
 
   <!-- Biography Content -->
- <main class="content">
-  <div class="content-wrapper">
-  <section id="bio" class="content-section" style="opacity: 1 !important;">
-    <div class="section-container">
-      <h2 class="section-title" style="opacity: 1 !important;">Biography</h2>
-      <div class="bio-grid">
-          <!-- Portrait -->
-          <div class="bio-portrait">
-            <img 
-              src="assets/rafsimons_portrait.png" 
-              alt="Portrait of Raf Simons" 
-              style="width:100%; object-fit:contain;"
-            />
-            <p class="caption">Raf Simons, 2018</p>
-          </div>
-          <!-- Timeline -->
-                   <div class="bio-content">
-                        <h3 class="bio-subtitle">The Architect of Youth Culture</h3>
-                        
-                        <div class="bio-timeline">
-                            <div class="timeline-item">
-                                <h4>1968</h4>
-                                <p>Born in <a href="https://en.wikipedia.org/wiki/Neerpelt" target="_blank" rel="noopener noreferrer" title="Learn about Neerpelt">Neerpelt, Belgium</a>. Trained as industrial designer at <a href="https://www.luca-arts.be/en/opleidingen/industrial-design" target="_blank" rel="noopener noreferrer" title="LUCA School of Arts">LUCA School of Arts</a>, Genk.</p>
-                            </div>
-                        
-                            <div class="timeline-item">
-                                <h4>1991</h4>
-                                <p>Graduated in <a href="https://www.luca-arts.be/en/opleidingen/industrial-design" target="_blank" rel="noopener noreferrer" title="Industrial & Furniture Design program">Industrial & Furniture Design</a> in Genk, Belgium.</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h4>1995</h4>
-                                <p>Launched eponymous menswear label after internship with <a href="https://en.wikipedia.org/wiki/Walter_Van_Beirendonck" target="_blank" rel="noopener noreferrer" title="Walter Van Beirendonck">Walter Van Beirendonck</a>. Debut collection featured slim silhouettes that would redefine menswear.</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h4>2000-2005</h4>
-                                <p>"Golden Era" producing iconic collections like <em>Riot Riot</em> (FW01) and <em><a href="https://www.vogue.com/fashion-shows/fall-2003-menswear/raf-simons/slideshow/collection#1" target="_blank" rel="noopener noreferrer" title="FW2003 Collection">Closer</a></em> (FW03), merging punk aesthetics with minimalist tailoring.</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h4>2005-2012</h4>
-                                <p>Creative Director at <a href="https://en.wikipedia.org/wiki/Jil_Sander" target="_blank" rel="noopener noreferrer" title="Jil Sander">Jil Sander</a>, introducing vibrant colors to the minimalist house while maintaining his rebellious edge.</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h4>2012-2015</h4>
-                                <p>Became co-creative director at <a href="https://www.dior.com/en_int" target="_blank" rel="noopener noreferrer" title="Christian Dior">Dior</a>, bringing his subversive approach to haute couture.</p>
-                            </div>
-                            
-                            <div class="timeline-item">
-                                <h4>2016-2018</h4>
-                                <p>Chief Creative Officer at <a href="https://backyardarchive.eu/collections/calvin-klein-205w39nyc?srsltid=AfmBOorQlpY2MMFk3SBi8d-_XUhU2ziEqKs2xUu4_mYStRLWRBnUNak5" target="_blank" rel="noopener noreferrer" title="Calvin Klein 205W39NYC">Calvin Klein 205W39NYC</a>, then refocusing on his own label while collaborating with brands like <a href="https://www.eastpak.com/ie-en/community/raf-simons/" target="_blank" rel="noopener noreferrer" title="Eastpak">Eastpak</a>, <a href="https://www.drmartens.com/us/en/collaborations/raf-simons" target="_blank" rel="noopener noreferrer" title="Dr. Martens">Dr. Martens</a>, and <a href="https://hypebeast.com/tags/adidas-by-raf-simons" target="_blank" rel="noopener noreferrer" title="Adidas x Raf Simons">Adidas</a>.</p>
-                            </div>
-                            <div class="timeline-item">
-                                <h4>2020-Present</h4>
-                                <p>Became Co-Creative Director of <a href="https://www.prada.com" target="_blank" rel="noopener noreferrer" title="Prada Official">Prada</a>, working alongside Miuccia Prada. <a href="https://www.nytimes.com/2020/02/23/fashion/raf-simons-prada.html" target="_blank" rel="noopener noreferrer" title="NY Times Article">(Read more)</a></p>
-                            </div>
-                            <div class="timeline-item">
-                                <h4>November 2023</h4>
-                                <p>Raf Simons officially shuts down his namesake brand, after 27 years of operation. <a href="https://hypebeast.com/2022/11/raf-simons-closes-brand-after-27-years" target="_blank" rel="noopener noreferrer" title="Hypebeast Article">(Official announcement)</a></p>
-                            </div>
-                        </div>
+  <main class="content">
+    <div class="content-wrapper">
+      <section id="bio" class="content-section" style="opacity: 1 !important;">
+        <div class="section-container">
+          <h2 class="section-title" style="opacity: 1 !important;">Biography</h2>
+          <div class="bio-grid">
+            <!-- Portrait -->
+            <div class="bio-portrait">
+              <img 
+                src="assets/rafsimons_portrait.png" 
+                alt="Portrait of Raf Simons" 
+                style="width:100%; object-fit:contain;"
+              />
+              <p class="caption">Raf Simons, 2018</p>
+            </div>
+            <!-- Timeline -->
+            <div class="bio-content">
+              <h3 class="bio-subtitle">The Architect of Youth Culture</h3>
+              <div class="bio-timeline">
+                <div class="timeline-item">
+                  <h4>1968</h4>
+                  <p>Born in <a href="https://en.wikipedia.org/wiki/Neerpelt" target="_blank" rel="noopener noreferrer" title="Learn about Neerpelt">Neerpelt, Belgium</a>. Trained as industrial designer at <a href="https://www.luca-arts.be/en/opleidingen/industrial-design" target="_blank" rel="noopener noreferrer" title="LUCA School of Arts">LUCA School of Arts</a>, Genk.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>1991</h4>
+                  <p>Graduated in <a href="https://www.luca-arts.be/en/opleidingen/industrial-design" target="_blank" rel="noopener noreferrer" title="Industrial & Furniture Design program">Industrial & Furniture Design</a> in Genk, Belgium.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>1995</h4>
+                  <p>Launched eponymous menswear label after internship with <a href="https://en.wikipedia.org/wiki/Walter_Van_Beirendonck" target="_blank" rel="noopener noreferrer" title="Walter Van Beirendonck">Walter Van Beirendonck</a>. Debut collection featured slim silhouettes that would redefine menswear.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>2000-2005</h4>
+                  <p>"Golden Era" producing iconic collections like <em>Riot Riot</em> (FW01) and <em><a href="https://www.vogue.com/fashion-shows/fall-2003-menswear/raf-simons/slideshow/collection#1" target="_blank" rel="noopener noreferrer" title="FW2003 Collection">Closer</a></em> (FW03), merging punk aesthetics with minimalist tailoring.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>2005-2012</h4>
+                  <p>Creative Director at <a href="https://en.wikipedia.org/wiki/Jil_Sander" target="_blank" rel="noopener noreferrer" title="Jil Sander">Jil Sander</a>, introducing vibrant colors to the minimalist house while maintaining his rebellious edge.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>2012-2015</h4>
+                  <p>Became co-creative director at <a href="https://www.dior.com/en_int" target="_blank" rel="noopener noreferrer" title="Christian Dior">Dior</a>, bringing his subversive approach to haute couture.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>2016-2018</h4>
+                  <p>Chief Creative Officer at <a href="https://backyardarchive.eu/collections/calvin-klein-205w39nyc?srsltid=AfmBOorQlpY2MMFk3SBi8d-_XUhU2ziEqKs2xUu4_mYStRLWRBnUNak5" target="_blank" rel="noopener noreferrer" title="Calvin Klein 205W39NYC">Calvin Klein 205W39NYC</a>, then refocusing on his own label while collaborating with brands like <a href="https://www.eastpak.com/ie-en/community/raf-simons/" target="_blank" rel="noopener noreferrer" title="Eastpak">Eastpak</a>, <a href="https://www.drmartens.com/us/en/collaborations/raf-simons" target="_blank" rel="noopener noreferrer" title="Dr. Martens">Dr. Martens</a>, and <a href="https://hypebeast.com/tags/adidas-by-raf-simons" target="_blank" rel="noopener noreferrer" title="Adidas x Raf Simons">Adidas</a>.</p>
+                </div>
+                <div class="timeline-item">
+                  <h4>2020-Present</h4>
+                  <p>Became Co-Creative Director of <a href="https://www.prada.com" target="_blank" rel="noopener noreferrer" title="Prada Official">Prada</a>, working alongside Miuccia Prada. <a href="https://www.nytimes.com/2020/02/23/fashion/raf-simons-prada.html" target="_blank" rel="noopener noreferrer" title="NY Times Article">(Read more)</a></p>
+                </div>
+                <div class="timeline-item">
+                  <h4>November 2023</h4>
+                  <p>Raf Simons officially shuts down his namesake brand, after 27 years of operation. <a href="https://hypebeast.com/2022/11/raf-simons-closes-brand-after-27-years" target="_blank" rel="noopener noreferrer" title="Hypebeast Article">(Official announcement)</a></p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+    <!-- New Wiki-Style Section -->
+<section class="wiki-section content-section" style="padding:4rem 3rem; background:#1a1a1a; border-radius:8px; margin:4rem 0; max-width: 900px; margin-left:auto; margin-right:auto; color: #eee; font-size: 1.125rem; line-height: 1.8;">
+  <h2 class="section-title" style="text-align:center; text-transform:uppercase; color:var(--accent-color); margin-bottom: 2rem;">
+    Why Raf Simons?
+  </h2>
+  <div class="wiki-content" style="opacity:0; transform: translateY(20px);">
+    <p style="margin-bottom:1.6rem;">
+      Raf Simons revolutionized menswear by channeling youth subcultures—punk, rave and post-punk—into sharply tailored silhouettes, creating an aesthetic both intellectual and emotionally charged. His early collections were met with skepticism by the fashion establishment, who found his street-inspired graphics and minimalist cuts too radical, but young buyers quickly recognized an authenticity missing elsewhere.
+    </p>
+    <p style="margin-bottom:1.6rem;">
+      Over time, as his “Riot Riot Riot” bomber and Joy Division-referencing pieces became icons of avant-garde design, demand exploded. Archive scarcity and cult status drove secondary-market prices into the tens of thousands, underpinned by a classic imbalance of supply and demand.
+      Today, original Raf Simons garments fetch record sums at auction and resale platforms, reflecting both their historical importance and enduring influence on modern streetwear.
+    </p>
+    <p style="margin-bottom:0;">
+      Critics now hail Simons as an “instigator” who forced luxury brands to rethink their formulas, culminating in high-profile roles at Jil Sander, Dior, Calvin Klein and Prada.
+      What was once dismissed as youth rebellion is now taught in design schools as a masterclass in cultural narrative—making Raf Simons not just a designer, but a defining voice of contemporary fashion.
+    </p>
+  </div>
+</section>
+
     </div>
   </main>
 
-  <!-- Menu & Barba scripts if needed -->
+  <!-- Menu & Barba scripts -->
   <script src="https://unpkg.com/@barba/core"></script>
   <script>
-    barba.init({ transitions: [{ name: 'fade', leave(data) { return gsap.to(data.current.container,{ opacity:0 }); }, enter(data) { return gsap.from(data.next.container,{ opacity:0 }); } }] });
+    barba.init({
+      transitions: [{
+        name: 'fade',
+        leave(data) { return gsap.to(data.current.container, { opacity: 0 }); },
+        enter(data) { return gsap.from(data.next.container, { opacity: 0 }); }
+      }]
+    });
   </script>
 
   <!-- GSAP ScrollTrigger animation for the biography -->
@@ -176,40 +148,77 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("DOMContentLoaded", () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      gsap.from("#bio .section-container", {
+      // Portrait animation
+      gsap.to(".bio-portrait", {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power4.out",
         scrollTrigger: {
-          trigger: "#bio",
+          trigger: ".bio-portrait",
+          start: "top 80%"
+        }
+      });
+
+      // Timeline items cascade
+      gsap.utils.toArray(".timeline-item").forEach((item, index) => {
+        gsap.from(item, {
+          opacity: 0,
+          x: -35,
+          duration: 0.6,
+          delay: index * 0.15,
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 90%"
+          }
+        });
+      });
+
+      // Quote block animation
+      gsap.from(".bio-quote", {
+        opacity: 0,
+        scale: 0.98,
+        duration: 1,
+        ease: "elastic.out(1, 0.4)",
+        scrollTrigger: {
+          trigger: ".bio-quote",
+          start: "top 90%"
+        }
+      });
+
+      // Wiki content fade-in
+      gsap.to(".wiki-content", {
+        scrollTrigger: {
+          trigger: ".wiki-section",
           start: "top 80%",
           toggleActions: "play none none none"
         },
-        opacity: 0,
-        y: 30,
+        opacity: 1,
+        y: 0,
         duration: 1,
         ease: "power2.out"
       });
     });
-
-    // Menu Toggle Functionality (add this above the Barba script)
-document.addEventListener('DOMContentLoaded', () => {
-  const menuBtn = document.querySelector('.menu-btn');
-  const sidebar = document.querySelector('.sidebar');
-  const overlay = document.querySelector('.overlay');
-
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-    overlay.classList.toggle('active');
-    menuBtn.classList.toggle('open');
-  });
-
-  overlay.addEventListener('click', () => {
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-    menuBtn.classList.remove('open');
-  });
-});
   </script>
+<script>
+ // Menu Toggle Functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
 
-  
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+      menuBtn.classList.toggle('open');
+    });
 
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      menuBtn.classList.remove('open');
+    });
+
+</script>
 </body>
 </html>

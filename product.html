@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main style="padding:2rem;">
+    <div id="productDetails"></div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const productId = parseInt(params.get('id'));
+    const allProducts = JSON.parse(localStorage.getItem('allProducts') || '[]');
+    const product = allProducts.find(p => p.id === productId);
+
+    if (product) {
+      document.getElementById('productDetails').innerHTML = `
+        <h1>${product.title}</h1>
+        <img src="${product.image}" style="max-width:300px;" />
+        <p>${product.description}</p>
+        <p><strong>Price:</strong> $${product.price}</p>
+        <button onclick="addToCart()">Add to Cart</button>
+      `;
+    } else {
+      document.getElementById('productDetails').textContent = 'Product not found.';
+    }
+
+    function addToCart() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const exists = cart.find(i => i.id === product.id);
+      if (exists) exists.qty++;
+      else cart.push({id: product.id, title: product.title, price: product.price, image: product.image, qty: 1});
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Added to cart');
+    }
+  </script>
+</body>
+</html>

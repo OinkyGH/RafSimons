@@ -90,25 +90,23 @@ document.addEventListener("DOMContentLoaded", () => {
     </header>
 
     <!-- Side Navigation -->
-    <nav class="sidebar">
-        <ul class="menu-nav">
-            <li class="menu-nav__item">
-                <select class="season-selector" id="seasonSelector">
-                    <option value="">Select Season</option>
-                    <option value="fw2001">FW2001 Riot Riot</option>
-                    <option value="ss2003">SS2003 Consumed</option>
-                    <option value="fw2003">FW2003 Closer</option>
-                    <option value="ss2005">SS2005 History of My World</option>
-                    <option value="ss2002">AW2004 Waves</option>
-                    <option value="fw2018">FW2018 Youth in Motion</option>
-                </select>
-            </li>
-            </li>
-          <li class="menu-nav__item"><a href="biography.html" data-barba-preload>Biography</a></li>
-          <li class="menu-nav__item"><a href="gallery.html">Gallery</a></li>
-          <li class="menu-nav__item"><a href="archive.html">Archive</a></li>
-          <li class="menu-nav__item"><a href="collaborations.html">Collaborations</a></li>
-          <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+<nav class="sidebar">
+  <ul class="menu-nav">
+    <li class="menu-nav__item"><a href="index.html">Home</a></li>
+    <li class="menu-nav__item"><a href="archive.html">Archive</a></li>
+
+    <!-- Collaborations with submenu (no href on the toggle) -->
+    <li class="menu-nav__item has-submenu">
+      <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+      <ul class="submenu">
+        <li><a href="#">Dr. Martens x Raf Simons</a></li>
+        <li><a href="#">Eastpak x Raf Simons</a></li>
+        <li><a href="#">Adidas by Raf Simons</a></li>
+        <li><a href="#">Calvin Klein 205W39NYC</a></li>
+      </ul>
+    </li>
+
+    <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
 
         </ul>
     </nav>
