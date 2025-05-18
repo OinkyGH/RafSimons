@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SHOP — Raf Simons Archive</title>
+  <title>SHOP</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+
+
+
+
 </head>
 <body>
   <div class="overlay"></div>
+
 
   <!-- Header with Menu + Cart Icon -->
   <header class="header">
@@ -25,12 +31,23 @@
   </header>
 
   <!-- Sidebar Navigation -->
-  <nav class="sidebar">
-    <ul class="menu-nav">
-      <li class="menu-nav__item"><a href="index.html">Home</a></li>
-      <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
-      <li class="menu-nav__item"><a href="collaborations.html">Collaborations</a></li>
-      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+<nav class="sidebar">
+  <ul class="menu-nav">
+    <li class="menu-nav__item"><a href="index.html">Home</a></li>
+    <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+
+    <!-- Collaborations with submenu (no href on the toggle) -->
+    <li class="menu-nav__item has-submenu">
+      <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+      <ul class="submenu">
+        <li><a href="#">Dr. Martens x Raf Simons</a></li>
+        <li><a href="#">Eastpak x Raf Simons</a></li>
+        <li><a href="#">Adidas by Raf Simons</a></li>
+        <li><a href="#">Calvin Klein 205W39NYC</a></li>
+      </ul>
+    </li>
+
+    <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
 
@@ -40,13 +57,13 @@
       <h1 style="letter-spacing:0.2em; text-transform:uppercase;">Shop</h1>
       <select class="season-selector" id="seasonFilter" style="max-width:200px; margin:1rem auto; display:block;">
         <option value="">All Seasons</option>
-        <option value="fw2001">FW2001 RIOT RIOT RIOT</option>
-        <option value="fw1998">FW1998 The Man-Machine</option>
+        <option value="aw2001">AW2001 RIOT RIOT RIOT</option>
         <option value="ss2002">SS2002 Woe Unto Those...</option>
+        <option value="aw2002">AW2002 Virginia Creeper</option>
         <option value="ss2003">SS2003 Consumed</option>
-        <option value="fw2003">FW2003 Closer</option>
+        <option value="aw2003">AW2003 Closer</option>
         <option value="aw2004">AW2004 Waves</option>
-        <option value="ss2005">SS2005 History of My World</option>
+        <option value="ss2005">AW2005 History of My World</option>
       </select>
     </section>
 
@@ -65,16 +82,16 @@
     const products = [
       {
         id: 1,
-        title: "FW2001 Riot Bomber Jacket",
-        description: "Iconic bomber from Raf's FW2001 Riot Riot Riot collection.",
+        title: "AW2001 Riot Bomber Jacket",
+        description: "Mythic bomber with raw punk patches and underground music references—an archival grail that redefined the intersection of youth culture and high fashion",
         price: 48000,
         image: "assets/riotriotbomber.png",
-        season: "fw2001"
+        season: "aw2001"
       },
       {
         id: 2,
         title: "SS2003 Consumed Hoodie",
-        description: "Consumed print hoodie from SS2003 collection.",
+        description: "Highly sought-after hoodie with the iconic shark print—an aggressive, era-defining piece from Raf’s most subversive season",
         price: 2000,
         image: "assets/consumedhoodie.png",
         season: "ss2003"
@@ -82,12 +99,171 @@
       {
         id: 3,
         title: "AW2003 Bauhaus Runway Knit Turtleneck",
-        description: "Graphics from Joy Division’s Closer album.",
+        description: "Graphics from Joy Division’s Closer album",
         price: 8130,
-        image: "img/fw2003-shirt.jpg",
-        season: "fw2003"
+        image: "assets/closerhoodiebauhaus.png",
+        season: "aw2003"
       },
-      // …add up to 28 items…
+      {
+        id: 4,
+        title: "AW2002 Virginia Creeper Puffer Jacket",
+        description: "Featuring haunting graphics and dystopian proportions straight from the runway",
+        price: 1800,
+        image: "assets/virginiapuffer.png",
+        season: "aw2002"
+      },
+       {
+        id: 5,
+        title: "AW2003 Denim. S078",
+        description: "Featuring signature minimal distressing and sharp tailoring from his post-“Virginia Creeper” era",
+        price: 790,
+        image: "assets/closerblackdenim.png",
+        season: "aw2003"
+      },
+       {
+        id: 6,
+        title: "AW2003 Blazer",
+        description: "Tailored blazer featuring a razor-sharp silhouette",
+        price: 400,
+        image: "assets/closerblazer.png",
+        season: "aw2003"
+      },
+        {
+        id: 7,
+        title: "AW2003 Closer Sample Blue Monday Runway OS Hoodie",
+        description: "Extremely rare runway sample hoodie with iconic graphics and unmatched archival value—crafted for collectors, not just wearers",
+        price: 21060,
+        image: "assets/rarecloserhoodie.png",
+        season: "aw2003"
+      },
+        {
+        id: 8,
+        title: "AW2002 'Nebraska' Mint Crewneck",
+        description: "Ultra-rare “Nebraska” crewneck with stark collegiate lettering, acid-washed to a ghostly fade and slowly decomposing with time",
+        price: 44905,
+        image: "assets/nebraskahoodie.png",
+        season: "aw2002"
+      },
+       {
+        id: 9,
+        title: "AW2002 Virginia Creeper Knee Slit Pants",
+        description: "Distressed black trousers with signature knee slits and layered construction",
+        price: 500,
+        image: "assets/vcjeansripped.png",
+        season: "aw2002"
+      },
+        {
+        id: 10,
+        title: "AW2003 Closer Ski Jacket",
+        description: "Technical ski jacket with bold graphic detailing and a structured, utilitarian cut",
+        price: 1500,
+        image: "assets/rafskijacket.png",
+        season: "aw2003"
+      },
+      {
+        id: 10,
+        title: "AW2002 ‘C’ Varsity Jacket",
+        description: "Wool varsity jacket with chenille “C” patch and leather sleeves, blending collegiate style with Raf’s signature dark romanticism",
+        price: 5300,
+        image: "assets/rafcvar.png",
+        season: "aw2002",
+      },
+      {
+        id: 11,
+        title: "AW2001 Riot Red Patch Turtleneck",
+        description: "Slim-fit turtleneck featuring the iconic red “Riot Riot Riot” patch—an essential layering piece from Raf’s most radical era",
+        price: 17644,
+        image: "assets/aw2001redcrew.png",
+        season: "aw2001",
+      },
+      {
+        id: 12,
+        title: "AW2001 Riot Antwerp Belgium Hoodie",
+        description: "Oversized hoodie with bold “Antwerp Belgium” print and raw-edge construction—an underground classic from Raf’s most rebellious phase",
+        price: 7204,
+        image: "assets/antwerpbelg.png",
+        season: "aw2001",
+      },
+      {
+        id: 13,
+        title: "AW2001 Riot Patched Tote Bag White",
+        description: "Canvas tote with raw-edged punk patches and bold “Riot Riot Riot” energy—an ultra-rare accessory from Raf’s most subversive era",
+        price: 5387,
+        image: "assets/riottote.png",
+        season: "aw2001",
+      },
+      {
+        id: 14,
+        title: "AW2001 Riot Bleached Cargo Trousers",
+        description: "Bleached cargo trousers with raw hems and oversized pockets",
+        price: 400,
+        image: "assets/cheapawjeans.png",
+        season: "aw2001",
+      },
+        {
+        id: 15,
+        title: "AW2001 Riot patches blanket",
+        description: "Oversized fleece blanket adorned with raw-edged punk patches—part protest piece, part collector’s artifact",
+        price: 10500,
+        image: "assets/blanket.png",
+        season: "aw2001",
+      },
+        {
+        id: 15,
+        title: "AW2001 Riot Aubergine Wool Coat",
+        description: "Tailored aubergine wool, sharp silhouette - rare and highly collectible",
+        price: 1000,
+        image: "assets/woolcoat.png",
+        season: "aw2001",
+      },
+       {
+        id: 16,
+        title: "AW2001 Riot Green Patchwork Sleeveless Hoodie",
+        description: "Sleeveless hoodie with distressed knit - an archival gem blending punk ethos with historic design",
+        price: 15879,
+        image: "assets/sleevelessaw.png",
+        season: "aw2001",
+      },
+        {
+        id: 17,
+        title: "SS2002 VNPPI Silence & Secrecy White Runway Hoodie",
+        description: "SS02 runway hoodie—“Silence/Secrecy” print channels post-9/11 paranoia and youth dissent - rare and radical",
+        price: 12393,
+        image: "assets/francais.png",
+        season: "ss2002",
+      },
+       {
+        id: 18,
+        title: "SS2002 Raf Simons Kollaps Sample White Sleeveless OS Hoodie",
+        description: "Unreleased sample—oversized and raw, echoing collapse-era dread - a true archival phantom",
+        price: 20164,
+        image: "assets/kollaps.png",
+        season: "ss2002",
+      },
+       {
+        id: 19,
+        title: "SS2002 Hope Is Supreme Sweater",
+        description: "“Hope is Supreme”—a fragile mantra stitched in the shadow of collapse - soft, yet defiant",
+        price: 3975,
+        image: "assets/pray.png",
+        season: "ss2002",
+      },
+       {
+        id: 20,
+        title: "SS2002 Sample Kollaps White OS Runway Hoodie",
+        description: "Unreleased and oversized—born of collapse, draped in silence. A spectral echo from the SS02 runway.",
+        price: 15205,
+        image: "assets/kollaps2.png",
+        season: "ss2002",
+      },
+       {
+        id: 21,
+        title: "SS2003 Consumed Cell Button Up Shirt",
+        description: "From SS03 “Consumed”—a crisp cell grid, corporate decay in soft cotton. Clean lines, coded critique",
+        price: 2400,
+        image: "assets/buttonup.png",
+        season: "ss2002",
+      },
     ];
 
     // 3) Save for detail page and initial render

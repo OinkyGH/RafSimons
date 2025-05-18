@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+ .headerRAF {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+  display: flex;
+}
+
+
+.site-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+
+.site-logo:hover {
+  color: var(--accent-color);
+}
+
+/* Keep the menu button right-aligned */
+.menu-btn {
+  margin-left: auto;
+}
+.site-logo {
+  cursor: pointer;
+}
+
+
+
+</style>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />

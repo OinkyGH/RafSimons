@@ -8,6 +8,8 @@
   <script src="https://unpkg.com/@barba/core"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 
   <style>
     /* Transition styles */
@@ -23,11 +25,21 @@
       transform-origin: bottom;
     }
   </style>
+
+
+
+
+
+
 </head>
 
 <body>
   <!-- Overlay & Menu Button (same as index.html) -->
   <div class="overlay"></div>
+
+</header>
+
+      
   <header class="header">
     <div class="menu-btn">
       <div class="menu-btn__line"></div>
@@ -39,9 +51,20 @@
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <ul class="menu-nav">
-      <li class="menu-nav__item"><a href="index.html" data-barba-preload>Home</a></li>
+      <li class="menu-nav__item"><a href="index.html">Home</a></li>
       <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
-      <li class="menu-nav__item"><a href="collaborations.html">Collaborations</a></li>
+
+      <!-- Collaborations with submenu (no href on the toggle) -->
+      <li class="menu-nav__item has-submenu">
+        <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+          <li><a href="#">Dr. Martens x Raf Simons</a></li>
+          <li><a href="#">Eastpak x Raf Simons</a></li>
+          <li><a href="#">Adidas by Raf Simons</a></li>
+          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+        </ul>
+      </li>
+
       <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
@@ -108,31 +131,30 @@
         </div>
       </section>
 
-    <!-- New Wiki-Style Section -->
-<section class="wiki-section content-section" style="padding:4rem 3rem; background:#1a1a1a; border-radius:8px; margin:4rem 0; max-width: 900px; margin-left:auto; margin-right:auto; color: #eee; font-size: 1.125rem; line-height: 1.8;">
-  <h2 class="section-title" style="text-align:center; text-transform:uppercase; color:var(--accent-color); margin-bottom: 2rem;">
-    Why Raf Simons?
-  </h2>
-  <div class="wiki-content" style="opacity:0; transform: translateY(20px);">
-    <p style="margin-bottom:1.6rem;">
-      Raf Simons revolutionized menswear by channeling youth subcultures—punk, rave and post-punk—into sharply tailored silhouettes, creating an aesthetic both intellectual and emotionally charged. His early collections were met with skepticism by the fashion establishment, who found his street-inspired graphics and minimalist cuts too radical, but young buyers quickly recognized an authenticity missing elsewhere.
-    </p>
-    <p style="margin-bottom:1.6rem;">
-      Over time, as his “Riot Riot Riot” bomber and Joy Division-referencing pieces became icons of avant-garde design, demand exploded. Archive scarcity and cult status drove secondary-market prices into the tens of thousands, underpinned by a classic imbalance of supply and demand.
-      Today, original Raf Simons garments fetch record sums at auction and resale platforms, reflecting both their historical importance and enduring influence on modern streetwear.
-    </p>
-    <p style="margin-bottom:0;">
-      Critics now hail Simons as an “instigator” who forced luxury brands to rethink their formulas, culminating in high-profile roles at Jil Sander, Dior, Calvin Klein and Prada.
-      What was once dismissed as youth rebellion is now taught in design schools as a masterclass in cultural narrative—making Raf Simons not just a designer, but a defining voice of contemporary fashion.
-    </p>
-  </div>
-</section>
+      <!-- New Wiki-Style Section -->
+      <section class="wiki-section content-section" style="padding:4rem 3rem; background:#1a1a1a; border-radius:8px; margin:4rem 0; max-width: 900px; margin-left:auto; margin-right:auto; color: #eee; font-size: 1.125rem; line-height: 1.8;">
+        <h2 class="section-title" style="text-align:center; text-transform:uppercase; color:var(--accent-color); margin-bottom: 2rem;">
+          Why Raf Simons?
+        </h2>
+        <div class="wiki-content" style="opacity:0; transform: translateY(20px);">
+          <p style="margin-bottom:1.6rem;">
+            Raf Simons revolutionized menswear by channeling youth subcultures—punk, rave and post-punk—into sharply tailored silhouettes, creating an aesthetic both intellectual and emotionally charged. His early collections were met with skepticism by the fashion establishment, who found his street-inspired graphics and minimalist cuts too radical, but young buyers quickly recognized an authenticity missing elsewhere.
+          </p>
+          <p style="margin-bottom:1.6rem;">
+            Over time, as his “Riot Riot Riot” bomber and Joy Division-referencing pieces became icons of avant-garde design, demand exploded. Archive scarcity and cult status drove secondary-market prices into the tens of thousands, underpinned by a classic imbalance of supply and demand.
+            Today, original Raf Simons garments fetch record sums at auction and resale platforms, reflecting both their historical importance and enduring influence on modern streetwear.
+          </p>
+          <p style="margin-bottom:0;">
+            Critics now hail Simons as an “instigator” who forced luxury brands to rethink their formulas, culminating in high-profile roles at Jil Sander, Dior, Calvin Klein and Prada.
+            What was once dismissed as youth rebellion is now taught in design schools as a masterclass in cultural narrative—making Raf Simons not just a designer, but a defining voice of contemporary fashion.
+          </p>
+        </div>
+      </section>
 
     </div>
   </main>
 
   <!-- Menu & Barba scripts -->
-  <script src="https://unpkg.com/@barba/core"></script>
   <script>
     barba.init({
       transitions: [{
@@ -141,14 +163,16 @@
         enter(data) { return gsap.from(data.next.container, { opacity: 0 }); }
       }]
     });
+    barba.hooks.afterEnter(() => {
+      initScrollAnimations();
+    });
   </script>
 
   <!-- GSAP ScrollTrigger animation for the biography -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    function initScrollAnimations() {
       gsap.registerPlugin(ScrollTrigger);
 
-      // Portrait animation
       gsap.to(".bio-portrait", {
         opacity: 1,
         y: 0,
@@ -160,7 +184,6 @@
         }
       });
 
-      // Timeline items cascade
       gsap.utils.toArray(".timeline-item").forEach((item, index) => {
         gsap.from(item, {
           opacity: 0,
@@ -175,7 +198,6 @@
         });
       });
 
-      // Quote block animation
       gsap.from(".bio-quote", {
         opacity: 0,
         scale: 0.98,
@@ -187,7 +209,6 @@
         }
       });
 
-      // Wiki content fade-in
       gsap.to(".wiki-content", {
         scrollTrigger: {
           trigger: ".wiki-section",
@@ -199,26 +220,14 @@
         duration: 1,
         ease: "power2.out"
       });
-    });
+    }
+
+    document.addEventListener("DOMContentLoaded", initScrollAnimations);
   </script>
-<script>
- // Menu Toggle Functionality
-    const menuBtn = document.querySelector('.menu-btn');
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.querySelector('.overlay');
 
-    menuBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('active');
-      overlay.classList.toggle('active');
-      menuBtn.classList.toggle('open');
-    });
+  <!-- Main menu + submenu logic, price-tag, card hover all in one -->
+  <script src="./script.js"></script>
 
-    overlay.addEventListener('click', () => {
-      sidebar.classList.remove('active');
-      overlay.classList.remove('active');
-      menuBtn.classList.remove('open');
-    });
-
-</script>
+  
 </body>
 </html>

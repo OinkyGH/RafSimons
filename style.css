@@ -37,6 +37,39 @@
 }
 
 
+/*header raf*/
+.headerRaf {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* style logo */
+.site-logo {
+  position: absolute;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.site-logo:hover {
+  color: #ff5555;
+}
+
+/* Keep the menu button right-aligned */
+.menu-btn {
+  margin-left: auto;
+}
+
 
 
 
