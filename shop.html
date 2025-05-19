@@ -8,10 +8,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+ /* ===== OVERLAY FIX ===== */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 998;
+      display: none;
+    }
 
+    .overlay.active {
+      display: block;
+    }
 
-
-
+</style>
 
 </head>
 <body>
@@ -181,7 +195,7 @@
         title: "AW2001 Riot Antwerp Belgium Hoodie",
         description: "Oversized hoodie with bold “Antwerp Belgium” print and raw-edge construction—an underground classic from Raf’s most rebellious phase",
         price: 7204,
-        image: "assets/antwerpbelg.png",
+        image: "https://i.imgur.com/TjXTEbA.png",
         season: "aw2001",
       },
       {
@@ -309,7 +323,7 @@
         title: "AW2005 History of My World Patchwork Hoodie",
         description: "A cryptic manifesto—Peter De Potter graphics, layered storytelling, history stitched in rebellion",
         price: 850,
-        image: "assets/archivepatch.png",
+        image: "https://i.imgur.com/i0Ig1TT.png",
         season: "aw2005",
       },
       {
@@ -355,7 +369,14 @@
             </h3>
             <p style="font-size:0.9rem;min-height:3rem;">${p.description}</p>
             <p style="font-weight:bold;">$${p.price}</p>
-            <button class="add-btn" style="padding:0.5rem 1rem;cursor:pointer;">Add to Cart</button>
+            <button class="chronicle-button">
+    <span>
+      <em>Add to Cart</em>
+    </span>
+    <span>
+      <em>Add to Cart</em>
+    </span>
+  </button>
           </div>`;
         grid.appendChild(card);
 
@@ -365,7 +386,7 @@
         });
 
         // Prevent detail-click when adding to cart
-        card.querySelector('.add-btn').addEventListener('click', e => {
+        card.querySelector('.chronicle-button').addEventListener('click', e => {
           e.stopPropagation();
           const cart = JSON.parse(localStorage.getItem('cart')||'[]');
           const exists = cart.find(i=>i.id===p.id);

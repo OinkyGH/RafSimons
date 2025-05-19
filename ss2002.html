@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raf Simons SS2002 – Woe Unto Those Who Spit on the Fear Generation...</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #ddd;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: rgba(18, 18, 18, 0.95);
+      z-index: 10;
+      border-bottom: 1px solid #333;
+    }
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ddd;
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+    .hamburger {
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #ddd;
+    }
+    .container {
+      max-width: 900px;
+      margin: 7rem auto 2rem;
+      padding: 0 1rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      color: #f05454;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    p {
+      margin-bottom: 1.3rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    blockquote {
+      font-style: italic;
+      color: #bbb;
+      border-left: 4px solid #666;
+      padding-left: 1rem;
+      margin: 1.8rem 0;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .quote-attr {
+      text-align: right;
+      color: #888;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+    .image-center {
+      margin: 2rem auto;
+      max-width: 480px;
+    }
+    .image-center img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #444;
+      box-shadow: 0 0 12px rgba(240, 84, 84, 0.6);
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-top: 5rem;
+      margin-bottom: 2rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #f05454;
+      font-weight: 700;
+    }
+
+    /* Carousel Styles */
+    .carousel {
+      max-width: 800px;
+      margin: 2rem auto 4rem;
+    }
+    .carousel-main {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .carousel-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      border: 1px solid #444;
+      border-radius: 6px;
+      box-shadow: 0 0 15px rgba(240, 84, 84, 0.5);
+      display: block;
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(18,18,18,0.7);
+      border: none;
+      color: #f05454;
+      font-size: 1.8rem;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 4px;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .carousel-arrow:hover {
+      background: #f05454;
+      color: #121212;
+    }
+    .carousel-arrow.left {
+      left: 60px;
+    }
+    .carousel-arrow.right {
+      right: 60px;
+    }
+    .carousel-thumbs {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
+    .carousel-thumbs .thumb {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      opacity: 0.55;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      transition: opacity 0.25s ease, border-color 0.3s ease;
+    }
+    .carousel-thumbs .thumb.active,
+    .carousel-thumbs .thumb:hover {
+      opacity: 1;
+      border-color: #f05454;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .carousel-arrow.left { left: 10px; }
+      .carousel-arrow.right { right: 10px; }
+      .carousel-image {
+        max-width: 100%;
+      }
+      .container {
+        margin: 6rem 1rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">RAF SIMONS</div>
+    <i class="fas fa-bars hamburger" aria-label="Menu"></i>
+  </header>
+
+  <div class="container" data-aos="fade-up">
+    <h1>SS2002 – Woe Unto Those Who Spit on the Fear Generation...</h1>
+
+    <p>
+      Raf Simons’ Spring/Summer 2002 collection, known by its evocative title, explored the aftermath of political unrest and societal fear in a post-9/11 world. The collection combined dystopian utilitarian aesthetics with layered construction and graphic prints expressing anxiety and unease.
+    </p>
+    <p>
+      Drawing from industrial workwear and military influences, Simons created garments with strong silhouettes but incorporated graphics and slogans that referenced political and cultural tensions of the early 2000s. The use of muted colors, often shades of gray and olive, emphasized the somber mood.
+    </p>
+    <blockquote>
+      “Clothing can carry the weight of the times – it’s a language of resistance.”  
+    </blockquote>
+    <div class="quote-attr">— Raf Simons, SS2002 Interview</div>
+    <p>
+      The collection’s nuanced commentary on fear and control has made it a touchstone in understanding fashion's role in reflecting and challenging social climates. Today, it is celebrated as a profound example of Simons’ visionary design approach.
+    </p>
+  </div>
+
+  <div class="image-center" data-aos="zoom-in">
+    <img src="assets/ss2002_main.png" alt="Raf Simons SS2002 Look" class="carousel-image" />
+  </div>
+
+  <h2 class="section-title" data-aos="fade-up">Runway Looks</h2>
+
+  <div class="carousel" data-aos="fade-up">
+    <div class="carousel-main">
+      <button class="carousel-arrow left" aria-label="Previous">&larr;</button>
+      <img src="assets/ss2002_1.png" alt="Look 1" class="carousel-image" />
+      <button class="carousel-arrow right" aria-label="Next">&rarr;</button>
+    </div>
+    <div class="carousel-thumbs">
+      <img src="assets/ss2002_1.png" alt="Look 1" class="thumb active" data-index="0" />
+      <img src="assets/ss2002_2.png" alt="Look 2" class="thumb" data-index="1" />
+      <img src="assets/ss2002_3.png" alt="Look 3" class="thumb" data-index="2" />
+      <img src="assets/ss2002_4.png" alt="Look 4" class="thumb" data-index="3" />
+      <img src="assets/ss2002_5.png" alt="Look 5" class="thumb" data-index="4" />
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    AOS.init({ duration: 1000, easing: 'ease-out-cubic', once: true });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainImg = document.querySelector('.carousel-main .carousel-image');
+      const thumbs = document.querySelectorAll('.carousel-thumbs .thumb');
+      const leftBtn = document.querySelector('.carousel-arrow.left');
+      const rightBtn = document.querySelector('.carousel-arrow.right');
+      let current = 0;
+
+      function updateCarousel(idx) {
+        thumbs[current].classList.remove('active');
+        current = (idx + thumbs.length) % thumbs.length;
+        thumbs[current].classList.add('active');
+        mainImg.src = thumbs[current].src;
+        mainImg.alt = thumbs[current].alt;
+      }
+
+      thumbs.forEach(t => {
+        t.addEventListener('click', () => updateCarousel(Number(t.dataset.index)));
+      });
+
+      leftBtn.addEventListener('click', () => updateCarousel(current - 1));
+      rightBtn.addEventListener('click', () => updateCarousel(current + 1));
+    });
+  </script>
+</body>
+</html>
