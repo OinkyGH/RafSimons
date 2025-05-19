@@ -10,9 +10,33 @@
     <script src="https://unpkg.com/@barba/core"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="js/transitions.js"></script> <!-- New file we'll create -->
+    <script src="js/transitions.js"></script> 
 
    
+
+<style>
+  /* Force bio-quote visible immediately */
+.bio-quote {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Center the philosophy section */
+.philosophy-section {
+  text-align: center;
+}
+.philosophy-section .philosophy-list {
+  display: inline-block;
+  text-align: left; 
+  margin-top: 1rem;
+}
+
+</style>
+
+
+
+
 <style>
   /* Transition styles */
   .transition-overlay {
@@ -163,6 +187,12 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         </section>
 
+
+
+        <!-- Overhead Title "Other seasons"-->
+        <h2 style="text-align: center; color: #fff; margin: 2rem 0; font-size: 2rem; text-transform: uppercase;">
+          Other Iconic Seasons
+        </h2>
         <!-- Other Iconic Seasons -->
         <section class="season-grid">
         <!-- ss2002 -->
@@ -227,12 +257,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             </blockquote>
                             <p class="quote-attribute">— Raf Simons, 2003</p>
                         </div>
-                        
+                        <section class="philosophy-section content-section">
+                          <div class="section-container">
                         <h3 class="bio-subtitle">Design Philosophy</h3>
                         <p>Simons' work synthesizes:</p>
                         <ul class="philosophy-list">
                             <li>Youth subcultures (punk, rave, mod)</li>
-                            <li>Industrial design principles</li>
+                            <li>Industrial design principles (functionality, minimalism, raw materials)</li>
                             <li>Artistic collaborations (Sterling Ruby, Peter Saville)</li>
                             <li>Deconstruction of traditional tailoring</li>
                         </ul>
@@ -241,26 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         </section>
 
-<section id="gallery" class="content-section">
-    <div class="section-container">
-        <h2 class="section-title">Gallery</h2>
-        <!-- Add gallery content here -->
-    </div>
-</section>
 
-<section id="archive" class="content-section">
-    <div class="section-container">
-        <h2 class="section-title">Archive</h2>
-        <!-- Add archive content here -->
-    </div>
-</section>
-
-<section id="shop" class="content-section">
-    <div class="section-container">
-        <h2 class="section-title">Collaborations</h2>
-        <!-- Add collaborations content here -->
-    </div>
-</section>
     </main>
 
     <script src="./script.js"></script>
