@@ -1,20 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cart — Raf Simons Archive</title>
-  <link rel="stylesheet" href="./style.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --accent-color: #ff5555;
+      --text-light: #f5f5f5;
+      --bg-dark: #111;
+      --easing: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    .overlay {
+      position: fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.7);
+      z-index:998; display:none;
+    }
+    .overlay.active { display:block; }
+    .header {
+      position: fixed; top:0; width:100%;
+      padding:1rem; z-index:1000;
+      display:flex; justify-content:flex-end;
+      background:rgba(17,17,17,0.9);
+    }
+    .menu-btn {
+      cursor:pointer; display:flex; flex-direction:column; gap:4px;
+    }
+    .menu-btn__line {
+      width:30px; height:2px; background:var(--text-light);
+      transition: all .4s var(--easing);
+    }
+    .sidebar {
+      position: fixed; top:0; right:-300px;
+      width:300px; height:100%; padding:80px 30px;
+      background:rgba(17,17,17,0.98);
+      transition: right .4s var(--easing);
+      z-index:999;
+    }
+    .sidebar.active { right:0; }
+    .menu-nav { list-style:none; }
+    .menu-nav__item { margin:20px 0; }
+    .menu-nav__item a {
+      color: var(--text-light); text-decoration:none;
+      font-size:1.1rem; transition: color .3s ease;
+    }
+    .menu-nav__item a:hover { color: var(--accent-color); }
+
+    main.content {
+      padding: 5rem 2rem 2rem; /* leave room for fixed header */
+      max-width:800px; margin:0 auto;
+    }
+    h1 { text-align:center; margin-bottom:2rem; text-transform:uppercase; }
+    #cartContainer > div {
+      display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem;
+    }
+    #cartContainer img {
+      width:80px; height:80px; object-fit:contain;
+    }
+    #cartContainer h4 { margin-bottom:.5rem; }
+    #cartContainer input[type=number] {
+      width:60px; padding:.2rem; border:none; border-radius:4px;
+      background: rgba(255,255,255,0.1); color:#fff;
+    }
+
+    /* New button styles */
+    .btn {
+      padding: .6rem 1.4rem;
+      border-radius: 4px;
+      font-size: .95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .3s var(--easing), transform .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn--clear {
+      background: transparent;
+      color: var(--text-light);
+      border: 2px solid var(--text-light);
+    }
+    .btn--clear:hover {
+      background: var(--text-light);
+      color: var(--bg-dark);
+    }
+
+    .btn--checkout {
+      background: var(--accent-color);
+      color: #fff;
+      border: 2px solid var(--accent-color);
+    }
+    .btn--checkout:hover {
+      background: transparent;
+      color: var(--accent-color);
+    }
+
+    #cartSummary { text-align: right; margin-top:2rem; }
+    #cartSummary h3 { margin-bottom:1rem; }
+    #checkoutMessage {
+      margin-top:1rem; text-align:center; font-weight:600;
+      color: var(--accent-color);
+    }
+
+
+    /* back button*/
+    .back-btn {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  z-index: 1001;
+}
+.back-btn:hover {
+  color: var(--accent-color);
+}
+
+  </style>
 </head>
 <body>
   <div class="overlay"></div>
+
   <header class="header">
+    <a href="shop.html" class="back-btn">
+  <i class="fas fa-arrow-left"></i> Back
+</a>
+
     <div class="menu-btn">
       <div class="menu-btn__line"></div>
       <div class="menu-btn__line"></div>
       <div class="menu-btn__line"></div>
     </div>
   </header>
+
   <nav class="sidebar">
     <ul class="menu-nav">
       <li class="menu-nav__item"><a href="index.html">Home</a></li>
@@ -23,11 +158,11 @@
     </ul>
   </nav>
 
-  <main class="content" style="padding:2rem;">
-    <h1 style="text-align:center; text-transform:uppercase;">Your Cart</h1>
-    <div id="cartContainer" style="max-width:800px; margin:2rem auto;"></div>
-    <div id="cartSummary" style="max-width:800px; margin:2rem auto; text-align:right;"></div>
-    <div id="checkoutMessage" style="max-width:800px; margin:1rem auto; text-align:center; font-weight:bold; color:var(--accent-color);"></div>
+  <main class="content">
+    <h1>Your Cart</h1>
+    <div id="cartContainer"></div>
+    <div id="cartSummary"></div>
+    <div id="checkoutMessage"></div>
   </main>
 
   <script>
@@ -37,17 +172,15 @@
       cont.innerHTML = '';
       cart.forEach((item,i) => {
         const row = document.createElement('div');
-        row.style = 'display:flex;align-items:center;gap:1rem;margin-bottom:1rem;';
         row.innerHTML = `
-          <img src="${item.image}" style="width:80px;height:80px;object-fit:contain;" />
+          <img src="${item.image}" alt="${item.title}">
           <div style="flex:1;">
             <h4>${item.title}</h4>
             <p>$${item.price} × 
-              <input type="number" min="1" value="${item.qty}" data-idx="${i}"
-                     style="width:50px;">
+              <input type="number" min="1" value="${item.qty}" data-idx="${i}">
             </p>
           </div>
-          <button data-rm="${i}" style="padding:0.3rem 0.6rem;cursor:pointer;">
+          <button data-rm="${i}" class="btn btn--clear">
             Remove
           </button>
         `;
@@ -57,19 +190,14 @@
       const total = cart.reduce((sum,i)=>sum + i.price*i.qty,0);
       document.getElementById('cartSummary').innerHTML = `
         <h3>Total: $${total.toFixed(2)}</h3>
-        <button id="clearCart" style="padding:0.6rem 1.2rem;cursor:pointer;margin-right:1rem;">
-          Clear Cart
-        </button>
-        <button id="checkoutBtn" style="padding:0.6rem 1.2rem;cursor:pointer;background:var(--accent-color);color:#fff;border:none;">
-          Checkout
-        </button>
+        <button id="clearCart" class="btn btn--clear">Clear Cart</button>
+        <button id="checkoutBtn" class="btn btn--checkout">Checkout</button>
       `;
 
-      // Clear message on render
       document.getElementById('checkoutMessage').textContent = '';
 
-      // Listeners
-      cont.querySelectorAll('input[type=number]').forEach(inp => {
+      // Quantity change
+      cont.querySelectorAll('input[type=number]').forEach(inp=>{
         inp.onchange = e => {
           const idx = e.target.dataset.idx;
           cart[idx].qty = +e.target.value;
@@ -77,37 +205,43 @@
           renderCart();
         };
       });
-      cont.querySelectorAll('button[data-rm]').forEach(btn => {
-        btn.onclick = () => {
+
+      // Remove item
+      cont.querySelectorAll('button[data-rm]').forEach(btn=>{
+        btn.onclick = ()=>{
           const idx = btn.dataset.rm;
           cart.splice(idx,1);
           localStorage.setItem('cart', JSON.stringify(cart));
           renderCart();
         };
       });
-      document.getElementById('clearCart').onclick = () => {
+
+      // Clear cart
+      document.getElementById('clearCart').onclick = ()=>{
         localStorage.removeItem('cart');
         renderCart();
       };
 
-      // Checkout handler
-      document.getElementById('checkoutBtn').onclick = () => {
-        if (cart.length === 0) {
+      // Checkout
+      document.getElementById('checkoutBtn').onclick = ()=>{
+        if(!cart.length){
           alert('Your cart is empty.');
           return;
         }
-        // simulate purchase
         localStorage.removeItem('cart');
         renderCart();
-        document.getElementById('checkoutMessage').textContent = '✅ Successfully bought!';
+        document.getElementById('checkoutMessage').textContent = '✅ Purchase successful!';
       };
     }
 
-    // Initial render
+    // Initial load
     renderCart();
-  </script>
 
-  <!-- your main script.js -->
-  <script src="./script.js"></script>
+    // Sidebar toggle (optional—if you have script.js handling it)
+    document.querySelector('.menu-btn').onclick = ()=>{
+      document.querySelector('.sidebar').classList.toggle('active');
+      document.querySelector('.overlay').classList.toggle('active');
+    };
+  </script>
 </body>
 </html>

@@ -128,11 +128,7 @@
       z-index: 10;
     }
 
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #eee;
-    }
+  
 
     .container {
       max-width: 800px;
@@ -261,17 +257,14 @@
     opacity: 1 !important;
     transform: none !important;
 }
-.logo {
-  /* Add these properties to your existing .logo styles */
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
+    .header .logo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1001;
 }
-
-.logo:hover {
-  opacity: 0.8;
-  color:#f05454
-}
+    .logo { font-size:1.2rem; font-weight:600; color:#eee; text-decoration:none; cursor:pointer; transition:opacity .3s ease; }
+    .logo:hover { opacity:.8; color:#f05454; }
   </style>
 </head>
 <body>
@@ -317,7 +310,7 @@
     </p>
 
     <p>
-      Its rarity and cultural resonance have elevated the “Riot” bomber to coveted status among collectors. While retailing at around €400 originally, it now commands up to $52,000 on resale platforms like Grailed, driven by its scarcity, historic importance, and high-profile wearers such as Kanye West and Drake (as seen below).
+      Its rarity and cultural resonance have elevated the “Riot” bomber to coveted status among collectors. While retailing at around €400 originally, it now commands up to $52,000 on resale platforms like Grailed, driven by its scarcity, historic importance, and high-profile wearers such as Kanye West and Drake <i>(as seen below)</i>.
     </p>
 
     <blockquote>
@@ -493,6 +486,12 @@
       });
     });
   });
+  // Preload every carousel thumb src into cache
+document.querySelectorAll('.carousel-thumbs .thumb').forEach(thumb => {
+  const img = new Image();
+  img.src = thumb.src;
+});
+
 </script>
 </body>
 </html>

@@ -6,6 +6,8 @@
   <title>SHOP</title>
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
@@ -25,6 +27,32 @@
       display: block;
     }
 
+ 
+     /* ===== LOGO STYLES ===== */
+ .logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #eee;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  position: fixed;
+}
+
+.logo:hover {
+  opacity: 0.8;
+  color:#f05454;
+}
+    /* add *after* your other .logo rules */
+.header .logo {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1001; /* above everything */
+}
+.notyf__toast--success {
+      background: #ff5555; /* Raf accent */
+    }
+
 </style>
 
 </head>
@@ -36,6 +64,7 @@
   <header class="header">
     <div class="header-controls">
       <i id="cartIcon" class="fas fa-shopping-cart"></i>
+      <a href="index.html" class="logo link-animation" style="text-decoration: none;">RAF SIM0NS</a>
       <div class="menu-btn">
         <div class="menu-btn__line"></div>
         <div class="menu-btn__line"></div>
@@ -89,8 +118,15 @@
 
   <script src="./script.js"></script>
   <script>
+      // Initialize Notyf
+    const notyf = new Notyf({
+      duration: 2000,
+      position: { x: 'right', y: 'top' },
+      dismissible: true
+    });
     // 1) Cart icon behavior
     document.getElementById('cartIcon').onclick = () => location.href = 'cart.html';
+    
 
     // 2) Define your products manually here:
     const products = [
@@ -350,53 +386,42 @@
     window.allProducts = products;
     renderProducts(products);
 
-    // 4) Render function (unchanged)
     function renderProducts(list) {
       const grid = document.getElementById('productsGrid');
       grid.innerHTML = '';
       list.forEach(p => {
         const card = document.createElement('div');
         card.className = 'shop-card';
-        card.style.cursor = 'pointer';
         card.innerHTML = `
-          <div class="card-content" style="position:relative;overflow:hidden;">
+          <div class="card-content">
             <img src="${p.image}" alt="${p.title}" style="width:100%;height:200px;object-fit:contain;" />
-            <h3>
-              <a href="product.html?id=${p.id}"
-                 style="color:inherit;text-decoration:none;">
-                ${p.title}
-              </a>
-            </h3>
+            <h3><a href="product.html?id=${p.id}" style="color:inherit;text-decoration:none;">${p.title}</a></h3>
             <p style="font-size:0.9rem;min-height:3rem;">${p.description}</p>
             <p style="font-weight:bold;">$${p.price}</p>
             <button class="chronicle-button">
-    <span>
-      <em>Add to Cart</em>
-    </span>
-    <span>
-      <em>Add to Cart</em>
-    </span>
-  </button>
+              <span><em>Add to Cart</em></span>
+              <span><em>Add to Cart</em></span>
+            </button>
           </div>`;
         grid.appendChild(card);
 
-        // Click whole card to detail
+        // Card click → detail
         card.addEventListener('click', () => {
           window.location.href = `product.html?id=${p.id}`;
         });
 
-        // Prevent detail-click when adding to cart
+        // Add to cart button
         card.querySelector('.chronicle-button').addEventListener('click', e => {
           e.stopPropagation();
           const cart = JSON.parse(localStorage.getItem('cart')||'[]');
           const exists = cart.find(i=>i.id===p.id);
-          if (exists) exists.qty++;
-          else cart.push({id:p.id,title:p.title,price:p.price,image:p.image,qty:1});
+          exists ? exists.qty++ : cart.push({ id:p.id, title:p.title, price:p.price, image:p.image, qty:1 });
           localStorage.setItem('cart', JSON.stringify(cart));
-          alert('Added to cart');
+          // Fancy toast instead of alert
+          notyf.success('✔️ Added to cart');
         });
 
-        // GSAP hover pop-out
+        // GSAP hover
         gsap.set(card, { transformOrigin:'center center' });
         card.addEventListener('mouseenter', () => {
           gsap.to(card, { scale:1.05, boxShadow:'0 12px 24px rgba(0,0,0,0.2)', duration:0.2 });
@@ -410,17 +435,17 @@
       gsap.registerPlugin(ScrollTrigger);
       gsap.utils.toArray('.shop-card').forEach((card,i) => {
         gsap.from(card, {
-          scrollTrigger:{ trigger: card, start:'top 90%' },
+          scrollTrigger:{ trigger:card, start:'top 90%' },
           opacity:0, y:40, duration:0.6, delay:i*0.05, ease:'power2.out'
         });
       });
     }
 
-    // 5) Season filter logic (unchanged)
+    // Season filter
     document.getElementById('seasonFilter').onchange = e => {
       const val = e.target.value;
-      renderProducts(val 
-        ? window.allProducts.filter(p => p.season === val) 
+      renderProducts(val
+        ? window.allProducts.filter(p => p.season === val)
         : window.allProducts
       );
     };
