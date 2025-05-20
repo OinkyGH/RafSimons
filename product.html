@@ -1,80 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
- .headerRAF {
-  position: relative;
-  top: 0;
-  width: 100%;
-  padding: 1rem;
-  z-index: 1000;
-  display: flex;
-}
-
-
-.site-logo {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-light);
-  text-decoration: none;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-  cursor: pointer;
-}
-
-
-.site-logo:hover {
-  color: var(--accent-color);
-}
-
-/* Keep the menu button right-aligned */
-.menu-btn {
-  margin-left: auto;
-}
-.site-logo {
-  cursor: pointer;
-}
-
-
-
-</style>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Product Details</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Product Details — Raf Simons Archive</title>
+
+  <!-- Core styles -->
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
+
+  <!-- GSAP & Notyf -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <style>
+    :root {
+      --accent-color: #ff5555;
+      --text-light: #f5f5f5;
+      --bg: #111;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    /* Header & Sidebar (same as shop) */
+    .header {
+      position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+      display: flex; justify-content: flex-end; align-items: center;
+      background: rgba(17,17,17,0.9); z-index: 1000;
+    }
+    .header-controls { display:flex; align-items:center; gap:1rem; }
+    #cartIcon { font-size:1.5rem; cursor:pointer; color:var(--text-light); }
+    .logo {
+      position: absolute; left: 16px; top:16px;
+      font-size:1.2rem; font-weight:600; color:var(--text-light);
+      text-decoration:none; transition:opacity .3s;
+    }
+    .logo:hover { opacity:.8; color:var(--accent-color); }
+    .menu-btn {
+      width:30px; height:20px; display:flex; flex-direction:column;
+      justify-content:space-between; cursor:pointer;
+    }
+    .menu-btn__line {
+      width:100%; height:2px; background:var(--text-light);
+      transition:all .4s ease;
+    }
+    .sidebar {
+      position: fixed; top:0; right:-300px; width:300px; height:100%;
+      background:rgba(17,17,17,0.98); padding:80px 30px;
+      transition:right .4s ease; z-index:999;
+    }
+    .sidebar.active { right:0; }
+    .overlay {
+      position:fixed; top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.7);display:none;z-index:998;
+    }
+    .overlay.active { display:block; }
+    .menu-nav { list-style:none; padding:0; margin:0; }
+    .menu-nav__item { margin:1rem 0; }
+    .menu-nav__item a { color:var(--text-light); text-decoration:none; font-size:1.1rem; }
+    .menu-nav__item a:hover { color:var(--accent-color); }
+
+    /* Main content */
+    main.content {
+      padding: 6rem 2rem 2rem; max-width: 1000px; margin:0 auto;
+    }
+    .back-link {
+      display:inline-block; margin-bottom:2rem; color:var(--text-light);
+      text-decoration:none; font-size:0.9rem;
+    }
+    .back-link i { margin-right:0.3em; }
+    .backlink:hover{
+      color:#ff5555;
+    }
+
+    .product-grid {
+      display:grid; grid-template-columns:1fr 1fr; gap:2rem;
+    }
+    @media(max-width:768px){
+      .product-grid { grid-template-columns:1fr; }
+    }
+
+    .product-image img {
+      width:100%; border-radius:6px; box-shadow:0 0 15px rgba(255,85,85,0.4);
+    }
+
+    .product-details h1 {
+      font-size:2rem; margin-bottom:1rem; text-transform:uppercase;
+      letter-spacing:1px; color:var(--accent-color);
+    }
+    .product-details p { margin-bottom:1rem; line-height:1.6; }
+    .product-details .price {
+      font-size:1.4rem; font-weight:600; margin-bottom:1.5rem;
+    }
+
+    /* Chronicle button (same as shop) */
+    .chronicle-button {
+      display:inline-block; position:relative; overflow:hidden;
+      border:none; padding:0.6rem 1.2rem; background:#fff; cursor:pointer;
+      font-size:0.9rem; font-weight:600; transition:background .4s;
+    }
+    .chronicle-button span { display:block; perspective:108px; }
+    .chronicle-button em { display:inline-block; transition:transform .55s, opacity .35s; }
+    .chronicle-button:hover { background:var(--accent-color); }
+    .chronicle-button:hover span:nth-of-type(1) em {
+      opacity:0; transform: rotateX(90deg) scaleX(.9) translateY(-10px);
+    }
+    .chronicle-button:hover span:nth-of-type(2) em {
+      opacity:1; transform: rotateX(0) scaleX(1) translateZ(0);
+    }
+    .chronicle-button span:nth-of-type(2) { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .chronicle-button span:nth-of-type(1) em { transform-origin:top; }
+    .chronicle-button span:nth-of-type(2) em { opacity:0; transform-origin:bottom; }
+
+  </style>
 </head>
 <body>
-  <main style="padding:2rem;">
-    <div id="productDetails"></div>
+  <div class="overlay"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-controls">
+      <i id="cartIcon" class="fas fa-shopping-cart"></i>
+      <a href="index.html" class="logo">RAF SIM0NS</a>
+      <div class="menu-btn">
+        <div class="menu-btn__line"></div>
+        <div class="menu-btn__line"></div>
+        <div class="menu-btn__line"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <ul class="menu-nav">
+      <li class="menu-nav__item"><a href="index.html">Home</a></li>
+      <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+      <li class="menu-nav__item has-submenu">
+        <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+          <li><a href="#">Dr. Martens x Raf Simons</a></li>
+          <li><a href="#">Eastpak x Raf Simons</a></li>
+          <li><a href="#">Adidas by Raf Simons</a></li>
+          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+        </ul>
+      </li>
+      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+    <a href="shop.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Shop</a>
+
+    <div id="productDetails" class="product-grid">
+      <!-- JS will inject image & details here -->
+    </div>
   </main>
 
   <script>
+    // Notyf
+    const notyf = new Notyf({ duration:2000, position:{ x:'right',y:'top'}, dismissible:true });
+    // Toggle sidebar
+    document.querySelector('.menu-btn').onclick = () => {
+      document.querySelector('.sidebar').classList.toggle('active');
+      document.querySelector('.overlay').classList.toggle('active');
+    };
+    document.querySelector('.overlay').onclick = () => {
+      document.querySelector('.sidebar').classList.remove('active');
+      document.querySelector('.overlay').classList.remove('active');
+    };
+    // Cart icon
+    document.getElementById('cartIcon').onclick = () => location.href='cart.html';
+
+    // Load product
     const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get('id'));
+    const productId = +params.get('id');
     const allProducts = JSON.parse(localStorage.getItem('allProducts') || '[]');
-    const product = allProducts.find(p => p.id === productId);
+    const product = allProducts.find(p=>p.id===productId);
 
-    if (product) {
-      document.getElementById('productDetails').innerHTML = `
-        <h1>${product.title}</h1>
-        <img src="${product.image}" style="max-width:300px;" />
-        <p>${product.description}</p>
-        <p><strong>Price:</strong> $${product.price}</p>
-        <button onclick="addToCart()">Add to Cart</button>
-      `;
+    const container = document.getElementById('productDetails');
+    if (!product) {
+      container.innerHTML = `<p>Product not found.</p>`;
     } else {
-      document.getElementById('productDetails').textContent = 'Product not found.';
-    }
+      container.innerHTML = `
+        <div class="product-image">
+          <img src="${product.image}" alt="${product.title}" />
+        </div>
+        <div class="product-details">
+          <h1>${product.title}</h1>
+          <p class="price">$${product.price.toFixed(2)}</p>
+          <p>${product.description}</p>
+          <button class="chronicle-button">
+            <span><em>Add to Cart</em></span>
+            <span><em>Add to Cart</em></span>
+          </button>
+        </div>
+      `;
 
-    function addToCart() {
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      const exists = cart.find(i => i.id === product.id);
-      if (exists) exists.qty++;
-      else cart.push({id: product.id, title: product.title, price: product.price, image: product.image, qty: 1});
-      localStorage.setItem('cart', JSON.stringify(cart));
-      alert('Added to cart');
+      // GSAP entrance
+      gsap.from(".product-image img", {
+        opacity:0, y:50, duration:0.8, ease:"power2.out",
+        scrollTrigger:{ trigger:".product-image", start:"top 90%" }
+      });
+      gsap.from(".product-details", {
+        opacity:0, x:50, duration:0.8, ease:"power2.out", delay:0.2,
+        scrollTrigger:{ trigger:".product-details", start:"top 90%" }
+      });
+
+      // Add to cart logic
+      document.querySelector('.chronicle-button').onclick = e => {
+        e.stopPropagation();
+        const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+        const exist = cart.find(i=>i.id===product.id);
+        if (exist) exist.qty++;
+        else cart.push({ id:product.id, title:product.title, price:product.price, image:product.image, qty:1 });
+        localStorage.setItem('cart', JSON.stringify(cart));
+        notyf.success('✔️ Added to cart');
+      };
     }
   </script>
 </body>

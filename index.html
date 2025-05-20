@@ -37,6 +37,26 @@
   transform: none !important;
 }
 
+.bio-quote blockquote {
+  font-style: italic;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  margin: 0 0 1rem;
+}
+
+.underline {
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  margin: 0 auto 1.5rem;
+}
+
+.quote-attribute {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
 /* Center the philosophy section */
 .philosophy-section {
   text-align: center;
@@ -197,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <h2>AW2001 RIOT RIOT RIOT</h2>
                     <p class="grail-text">The Holy Grail of Contemporary Fashion</p>
                     <p>The iconic RIOT RIOT RIOT bomber jacket remains the most sought-after piece in Raf Simons' history, symbolizing youth rebellion and avant-garde design.
-                    <a href="fw2001.html" class="read-more" target="_blank">Read more about FW2001</a>
+                    <a href="fw2001.html" class="read-more">Read more about FW2001</a>
                 </div>
             </div>
         </section>
@@ -235,8 +255,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card-hover-effect"></div>
         </div>
     </div>
-            <!-- fw2003 -->
-              <div class="season-card" onclick="window.location.href='fw2003.html';">
+            <!-- aw2003 -->
+              <div class="season-card" onclick="window.location.href='aw2003.html';">
         <div class="card-content">
             <h3>AW2003 "Closer"</h3>
             <p>Industrial-inspired tailoring with harness details and metallic finishes</p>
@@ -249,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p>Oversized silhouettes with graphic slogans and distressed fabrics, blending rebellious streetwear with introspective themes</p>
             </div>
 <!-- ss2005 -->
-           <div class="season-card" onclick="window.location.href='ss2005.html';">
+           <div class="season-card" onclick="window.location.href='aw2005.html';">
         <div class="card-content">
             <h3>AW2005 "History of My World"</h3>
             <p>Collaboration with Peter Saville featuring graphic prints of Joy Division album art</p>
@@ -363,75 +383,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-<script>
-  barba.init({
-    transitions: [{
-      name: 'fade',
-      leave(data) {
-        return gsap.to(data.current.container, {
-          opacity: 0
-        });
-      },
-      enter(data) {
-        return gsap.from(data.next.container, {
-          opacity: 0
-        });
-      }
-    }]
-  });
-</script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // 1) Quote animation: a little “breathe” + fade-in on scroll
-  gsap.timeline({
+  const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".bio-quote blockquote",
+      trigger: ".bio-quote",
       start: "top 80%",
       toggleActions: "play none none none"
     }
-  })
-  .from(".bio-quote blockquote", {
-    opacity: 0,
-    scale: 0.8,
-    rotation: -5,
-    duration: 0.6,
-    ease: "back.out(1.7)"
-  })
-  .to(".bio-quote blockquote", {
-    scale: 1.03,
-    duration: 0.8,
-    ease: "sine.inOut",
-    yoyo: true,
-    repeat: -1
   });
 
-  // 2) Design Philosophy: staggered pop & color flicker
-  gsap.utils.toArray(".philosophy-list li").forEach((item, i) => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: item,
-        start: "top 90%",
-        toggleActions: "play none none none"
-      }
-    });
-    tl.from(item, {
-      opacity: 0,
-      x: -30,
-      duration: 0.4,
-      ease: "power2.out"
-    })
-    .to(item, {
-      color: "var(--accent-color)",
-      duration: 0.2,
-      ease: "none",
-      repeat: 1,
-      yoyo: true,
-      delay: 0.1
-    });
+  // 1) Fade & slide the quote in
+  tl.from(".bio-quote blockquote", {
+    opacity: 0,
+    y: 40,
+    duration: 0.8,
+    ease: "power4.out"
   });
+
+  // 2) Grow the underline
+  tl.from(".bio-quote .underline", {
+    width: 0,
+    duration: 0.6,
+    ease: "power2.out"
+  }, "-=0.4"); // overlap with quote
+
+  // 3) Fade & slide in the attribution
+  tl.from(".bio-quote .quote-attribute", {
+    opacity: 0,
+    y: 20,
+    duration: 0.5,
+    ease: "power2.out"
+  }, "-=0.3");
 });
 </script>
 
@@ -442,3 +429,5 @@ document.addEventListener("DOMContentLoaded", () => {
  </div>
 </main>
 </html>
+
+
