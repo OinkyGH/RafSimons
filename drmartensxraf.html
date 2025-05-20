@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Martens × Raf Simons</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --accent-color: #e63946;
+      --text-light: #eee;
+      --easing: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Header + Logo */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 1rem 2rem;
+      background: rgba(17,17,17,0.9);
+      z-index: 1000;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .header .logo {
+      position: absolute;
+      top: 16px; left: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity .3s ease;
+      z-index: 1001;
+    }
+    .header .logo:hover {
+      opacity: .8;
+      color: var(--accent-color);
+    }
+
+    /* Body & Overlay */
+    body {
+      padding-top: 4rem;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #111;
+      color: var(--text-light);
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 998; display: none;
+    }
+    .overlay.active { display: block; }
+
+    /* Menu & Sidebar */
+    .menu-btn {
+      width: 30px; height: 20px; cursor: pointer; z-index:1001;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .menu-btn__line {
+      width:100%; height:2px; background:#fff;
+      transition:all .4s var(--easing);
+    }
+    .menu-btn.open .menu-btn__line:nth-child(1){ transform: rotate(45deg) translate(5px,5px); }
+    .menu-btn.open .menu-btn__line:nth-child(2){ opacity:0; }
+    .menu-btn.open .menu-btn__line:nth-child(3){ transform: rotate(-45deg) translate(5px,-5px); }
+
+    .sidebar {
+      position: fixed; top:0; right:-300px; width:300px; height:100%;
+      background: rgba(17,17,17,0.98); padding:80px 30px;
+      transition: right .4s var(--easing); z-index:999;
+    }
+    .sidebar.active { right:0; }
+    .sidebar .menu-nav { list-style:none; padding:0; margin:0; }
+    .menu-nav__item { margin:1rem 0; }
+    .menu-nav__item a { color:var(--text-light); text-decoration:none; font-size:1.1rem; }
+    .has-submenu .submenu {
+      max-height:0; overflow:hidden; transition:max-height .3s ease-out;
+      padding-left:15px; list-style:none; margin:0.5rem 0 0;
+    }
+    .has-submenu.open .submenu { max-height:500px; }
+    .submenu-toggle { display:flex; justify-content:space-between; align-items:center; color:var(--text-light); text-decoration:none; cursor:pointer; }
+    .submenu-toggle i { margin-left:8px; transition:transform .3s ease; }
+    .has-submenu.open .submenu-toggle i { transform:rotate(180deg); }
+
+    /* Feature Section */
+    .season-feature {
+      display:flex; flex-direction:column; align-items:center; gap:2rem;
+      padding:6rem 2rem 2rem; /* pulled bottom padding up */
+      text-align:center;
+    }
+    .season-feature .season-image img {
+      max-width:100%; max-height:350px; margin:0 auto;
+    }
+    .season-info h2 {
+      font-size:2rem; margin:.5rem 0; letter-spacing:.1em; color:var(--text-light);
+    }
+    .grail-text {
+      color:var(--accent-color); font-weight:700; margin-bottom:1rem; font-size:1.2rem;
+    }
+
+    /* Cards Grid */
+    .season-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:2rem; padding:1rem 2rem 4rem; /* moved up with less top padding */
+      max-width:1200px; margin:0 auto;
+    }
+    .season-card {
+      background:rgba(255,255,255,0.05); border-radius:8px;
+      overflow:hidden; cursor:pointer; perspective:800px;
+      transform-style:preserve-3d;
+      /* ambient glow */
+      box-shadow: 0 0 20px rgba(230,57,70,0.6);
+      transition: box-shadow .3s ease;
+    }
+    .card-content {
+      padding:1.5rem; transition:transform .3s ease-out;
+      transform-style:preserve-3d; text-align:center;
+    }
+    .season-card img {
+      width:80%; height:auto; max-height:300px;
+      display:block; margin:0 auto 1rem;
+    }
+    .season-card h3 { font-size:1.3rem; margin-bottom:.75rem; }
+    .season-card p  { font-size:1rem; line-height:1.4; }
+    .season-card:hover {
+      box-shadow: 0 0 40px rgba(230,57,70,0.8);
+    }
+    .season-card:hover .card-content {
+      transform:rotateX(5deg) rotateY(-5deg) scale(1.02);
+    }
+
+    /* About Section */
+    .content-section {
+      max-width:800px; margin:3rem auto; padding:0 1rem; line-height:1.6;
+    }
+    .content-section h2 {
+      text-transform:uppercase; letter-spacing:.1em;
+      color:var(--accent-color); margin-bottom:1rem; font-size:1.8rem;
+    }
+
+    .fade-in { opacity:0; }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+  <header class="header">
+    <a href="index.html" class="logo">RAF SIM0NS</a>
+    <div class="menu-btn">
+      <div class="menu-btn__line"></div>
+      <div class="menu-btn__line"></div>
+      <div class="menu-btn__line"></div>
+    </div>
+  </header>
+
+  <nav class="sidebar">
+    <ul class="menu-nav">
+      <li class="menu-nav__item"><a href="index.html">Home</a></li>
+      <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+      <li class="menu-nav__item has-submenu">
+        <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+          <li><a href="drmartens.html">Dr. Martens × Raf Simons</a></li>
+          <li><a href="#">Eastpak × Raf Simons</a></li>
+          <li><a href="#">Adidas × Raf Simons</a></li>
+          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+        </ul>
+      </li>
+      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <!-- FEATURE -->
+    <section class="season-feature fade-in">
+      <div class="season-image">
+        <img src="https://i.imgur.com/pfAvLeE.png" alt="Dr. Martens × Raf Simons Boot">
+      </div>
+      <div class="season-info">
+        <h2>Dr. Martens × Raf Simons</h2>
+        <p class="grail-text">Limited-Edition Subculture Staple</p>
+        <p>In 2017, Raf Simons re-envisioned the iconic 1460 boot with deconstructed tongues, exposed stitching, and platform soles—bridging punk heritage and haute design.</p>
+      </div>
+    </section>
+     <!-- ABOUT -->
+    <section class="content-section fade-in">
+      <h2>About this Collab</h2>
+      <p>Dr. Martens’ air-cushioned sole has anchored underground style since 1960. Partnering with Raf Simons infused it with minimalist tailoring and bold deconstruction—limited runs that sold out instantly and now command collector prices.</p>
+      <p>Small batches and exclusive boutiques turned each drop into a cultural event—cementing it as one of the decade’s most celebrated designer collaborations.</p>
+    </section>
+  </main>
+
+    <!-- CARDS -->
+    <section class="season-grid">
+      <div class="season-card fade-in">
+        <div class="card-content">
+          <img src="https://i.imgur.com/8XSziTL.png" alt="1460 Deconstructed">
+          <h3>Raf Simons × Dr. Martens 1461</h3>
+          <p>Smooth leather upper, contrast heel loop, metal toe cap, triple-eyelet lacing, air-cushioned sole.</p>
+        </div>
+      </div>
+      <div class="season-card fade-in">
+        <div class="card-content">
+          <img src="https://i.imgur.com/oHCtjk9.png" alt="Jaden Platform Lo">
+          <h3>2009 Raf Simons × Dr. Martens Sandals</h3>
+          <p>Strappy, gladiator-inspired design in premium leather with an imposing platform sole.</p>
+        </div>
+      </div>
+    </section>
+
+   
+
+  <script src="script.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Logo appearance
+    gsap.to('.logo', {
+      opacity: 1, y: 0,
+      duration: 0.8, ease: "bounce.out", delay: 0.3
+    });
+
+    // Fade-in on scroll
+    gsap.utils.toArray('.fade-in').forEach((el,i) => {
+      gsap.from(el, {
+        opacity: 0, y: 40,
+        duration: 0.8, delay: 0.4 + i*0.2,
+        ease: "power2.out",
+        scrollTrigger:{ trigger: el, start:"top 90%" }
+      });
+    });
+
+  
+  
+  </script>
+</body>
+</html>
