@@ -752,12 +752,7 @@ blockquote {
 
 
 
-.season-info > * ,
-.season-grid .season-card,
-#bio .section-container {
-  opacity: 0;
-  y: 30px; /* GSAP animation scroll */
-}
+
 
 
 /* IMPORTANT FOR biography.html visibility fix -- gsap override */
