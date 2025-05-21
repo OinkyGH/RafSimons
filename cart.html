@@ -34,28 +34,7 @@
       display:flex; justify-content:flex-end;
       background:rgba(17,17,17,0.9);
     }
-    .menu-btn {
-      cursor:pointer; display:flex; flex-direction:column; gap:4px;
-    }
-    .menu-btn__line {
-      width:30px; height:2px; background:var(--text-light);
-      transition: all .4s var(--easing);
-    }
-    .sidebar {
-      position: fixed; top:0; right:-300px;
-      width:300px; height:100%; padding:80px 30px;
-      background:rgba(17,17,17,0.98);
-      transition: right .4s var(--easing);
-      z-index:999;
-    }
-    .sidebar.active { right:0; }
-    .menu-nav { list-style:none; }
-    .menu-nav__item { margin:20px 0; }
-    .menu-nav__item a {
-      color: var(--text-light); text-decoration:none;
-      font-size:1.1rem; transition: color .3s ease;
-    }
-    .menu-nav__item a:hover { color: var(--accent-color); }
+
 
     main.content {
       padding: 5rem 2rem 2rem; /* leave room for fixed header */
@@ -150,11 +129,20 @@
     </div>
   </header>
 
-  <nav class="sidebar">
+<nav class="sidebar">
     <ul class="menu-nav">
       <li class="menu-nav__item"><a href="index.html">Home</a></li>
-      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
       <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+      <li class="menu-nav__item has-submenu">
+        <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+          <li><a href="drmartensxraf.html">Dr. Martens × Raf Simons</a></li>
+          <li><a href="#eastpakraf.html">Eastpak × Raf Simons</a></li>
+          <li><a href="#">Adidas × Raf Simons</a></li>
+          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+        </ul>
+      </li>
+      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
 
@@ -164,7 +152,7 @@
     <div id="cartSummary"></div>
     <div id="checkoutMessage"></div>
   </main>
-
+  <script src="./script.js"></script>
   <script>
     function renderCart() {
       const cart = JSON.parse(localStorage.getItem('cart')||'[]');
@@ -238,10 +226,7 @@
     renderCart();
 
     // Sidebar toggle (optional—if you have script.js handling it)
-    document.querySelector('.menu-btn').onclick = ()=>{
-      document.querySelector('.sidebar').classList.toggle('active');
-      document.querySelector('.overlay').classList.toggle('active');
-    };
+   
   </script>
 </body>
 </html>
