@@ -92,6 +92,225 @@
 
 
   </style>
+  <style>
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  /* Header & Logo Adjustments */
+  .header {
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    left: 15px;
+    top: 18px;
+  }
+
+  /* Bio Grid Layout */
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bio-portrait {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Timeline Adjustments */
+  .timeline-item {
+    padding: 1rem 0;
+  }
+
+  .timeline-item h4 {
+    font-size: 1.1rem;
+  }
+
+  .timeline-item p {
+    font-size: 0.95rem;
+  }
+
+  /* Wiki Section */
+  .wiki-section {
+    padding: 2rem 1.5rem !important;
+    margin: 3rem auto !important;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Smaller Screens */
+  .logo {
+    font-size: 0.9rem;
+    left: 10px;
+  }
+
+  .menu-btn {
+    right: 10px !important;
+  }
+
+  .bio-portrait {
+    max-width: 100%;
+  }
+
+  .timeline-item {
+    padding: 0.8rem 0;
+  }
+
+  .wiki-section {
+    padding: 1.5rem 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Link Underline Adjustments */
+  .link-animation::before {
+    bottom: -1px;
+    height: 1px;
+  }
+}
+
+/* General Responsive Rules */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+}
+
+.bio-portrait img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wiki-content {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Touch Target Sizing */
+.menu-btn__line {
+  width: 25px;
+  height: 2px;
+}
+
+.has-submenu > a {
+  padding-right: 25px;
+}
+</style>
+<style>
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  /* Header & Logo Adjustments */
+  .header {
+    height: 60px;
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 1rem;
+    left: 15px;
+    top: 18px;
+  }
+
+  /* Bio Grid Layout */
+  .bio-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .bio-portrait {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Timeline Adjustments */
+  .timeline-item {
+    padding: 1rem 0;
+  }
+
+  .timeline-item h4 {
+    font-size: 1.1rem;
+  }
+
+  .timeline-item p {
+    font-size: 0.95rem;
+  }
+
+  /* Wiki Section */
+  .wiki-section {
+    padding: 2rem 1.5rem !important;
+    margin: 3rem auto !important;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Smaller Screens */
+  .logo {
+    font-size: 0.9rem;
+    left: 10px;
+  }
+
+  .menu-btn {
+    right: 10px !important;
+  }
+
+  .bio-portrait {
+    max-width: 100%;
+  }
+
+  .timeline-item {
+    padding: 0.8rem 0;
+  }
+
+  .wiki-section {
+    padding: 1.5rem 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Link Underline Adjustments */
+  .link-animation::before {
+    bottom: -1px;
+    height: 1px;
+  }
+}
+
+/* General Responsive Rules */
+.bio-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+}
+
+.bio-portrait img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wiki-content {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Touch Target Sizing */
+.menu-btn__line {
+  width: 25px;
+  height: 2px;
+}
+
+.has-submenu > a {
+  padding-right: 25px;
+}
+</style>
+  
 </head>
 <body>
   <div class="overlay"></div>
