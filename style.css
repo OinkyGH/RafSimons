@@ -23,6 +23,32 @@
 
 
 
+/* Full-screen overlay (hidden initially by scaleX(0)) */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  background: #ff5555;           /* accent color */
+  transform-origin: left center; /* expand from left */
+  transform: scaleX(0);
+  z-index: 10000;
+  pointer-events: none;          /* allow clicks through */
+  will-change: transform;
+}
+
+/* Ensure Barba container is positioned so new content can overlay properly */
+[data-barba="container"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+
+
 /* Container for cart + menu */
 .header-controls {
   display: flex;

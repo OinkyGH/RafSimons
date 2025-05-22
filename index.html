@@ -88,8 +88,9 @@
   }
 </style>
 </head>
-<main data-barba="container" data-barba-namespace="home"> <!-- Unique namespace per page -->
-  <div class="barba-container">
+<main data-barba="container" data-barba-namespace="home">
+
+  
 
 
 <script>
@@ -139,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <body>
+ 
     <div class="overlay"></div>
     <!-- Animated Menu Button -->
     <header class="header">
@@ -150,24 +152,21 @@ document.addEventListener("DOMContentLoaded", () => {
     </header>
 
     <!-- Side Navigation -->
-<nav class="sidebar">
-  <ul class="menu-nav">
-    <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
-
-    <!-- Collaborations with submenu (no href on the toggle) -->
-    <li class="menu-nav__item has-submenu">
-      <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
-      <ul class="submenu">
-        <li><a href="drmartensxraf.html">Dr. Martens x Raf Simons</a></li>
-        <li><a href="#">Eastpak x Raf Simons</a></li>
-        <li><a href="#">Adidas by Raf Simons</a></li>
-        <li><a href="#">Calvin Klein 205W39NYC</a></li>
+    <nav class="sidebar">
+      <ul class="menu-nav">
+        <li class="menu-nav__item"><a href="index.html">Home</a></li>
+        <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+        <li class="menu-nav__item has-submenu">
+          <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="drmartensxraf.html">Dr. Martens × Raf Simons</a></li>
+            <li><a href="eastpakraf.html">Eastpak × Raf Simons</a></li>
+            <li><a href="adidasraf.html">Adidas × Raf Simons</a></li>
+            <li><a href="calvinklein.html">Calvin Klein 205W39NYC</a></li>
+          </ul>
+        </li>
+        <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
       </ul>
-    </li>
-
-    <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
-
-        </ul>
     </nav>
 
     <!-- Main Content -->
@@ -442,11 +441,14 @@ gsap.utils.toArray('.philosophy-section .opacity-0').forEach((el, i) => {
 
 </script>
 
+  
+
 
 
 </body>
 
  </div>
+ 
 </main>
 </html>
 

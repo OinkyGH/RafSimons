@@ -11,49 +11,83 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
- /* ===== OVERLAY FIX ===== */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+
+.overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
-      z-index: 998;
-      display: none;
+      z-index: 998; display: none;
+    }
+    .overlay.active { display: block; }
+
+    /* ===== LOGO STYLES ===== */
+    .logo {
+      font-size: 1.2rem; font-weight: 600;
+      color: #eee; text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    .logo:hover { opacity: 0.8; color: #f05454; }
+    .header .logo {
+      position: absolute; top: 16px; left: 16px; z-index: 1001;
     }
 
-    .overlay.active {
-      display: block;
+    /* Notyf link styling */
+    .notyf__toast--success a {
+      color: #fff; text-decoration: underline;
+      margin-left: .5rem; font-size: .9rem;
     }
 
- 
-     /* ===== LOGO STYLES ===== */
- .logo {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #eee;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-  position: fixed;
-}
-
-.logo:hover {
-  opacity: 0.8;
-  color:#f05454;
-}
-    /* add *after* your other .logo rules */
-.header .logo {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  z-index: 1001; /* above everything */
-}
-.notyf__toast--success {
-      background: #7dff55; 
+    /* Cart preview dropdown */
+    .cart-preview {
+      position: absolute; top: 2.5rem; right: 1.5rem;
+      width: 180px; max-height: 180px;
+      background: #111; border: 1px solid #333;
+      border-radius: 6px; color: #fff;
+      padding: 0.5rem; opacity: 0; visibility: hidden;
+      transition: opacity .2s, visibility .2s;
+      z-index: 1002; overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
+    .cart-preview.visible {
+      opacity: 1; visibility: visible;
+    }
+    .cart-preview-item img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
 
-</style>
+.cart-preview-item .item-text {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.cart-preview-item .item-text div {
+  font-size: 0.85rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ff5555;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0 4px;
+  flex-shrink: 0;
+}
+    .remove-btn:hover { opacity: 1; }
+    .cart-preview-footer a {
+      color: #fff !important; text-decoration: underline;
+    }
+    .header-controls { position: relative; }
+
+
+  </style>
 
 </head>
 <body>
@@ -64,6 +98,7 @@
   <header class="header">
     <div class="header-controls">
       <i id="cartIcon" class="fas fa-shopping-cart"></i>
+      <div id="cartPreview" class="cart-preview"></div>
       <a href="index.html" class="logo link-animation" style="text-decoration: none;">RAF SIM0NS</a>
       <div class="menu-btn">
         <div class="menu-btn__line"></div>
@@ -74,23 +109,20 @@
   </header>
 
   <!-- Sidebar Navigation -->
-<nav class="sidebar">
-  <ul class="menu-nav">
-    <li class="menu-nav__item"><a href="index.html">Home</a></li>
-    <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
-
-    <!-- Collaborations with submenu (no href on the toggle) -->
-    <li class="menu-nav__item has-submenu">
-      <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
-      <ul class="submenu">
-        <li><a href="#">Dr. Martens x Raf Simons</a></li>
-        <li><a href="#">Eastpak x Raf Simons</a></li>
-        <li><a href="#">Adidas by Raf Simons</a></li>
-        <li><a href="#">Calvin Klein 205W39NYC</a></li>
-      </ul>
-    </li>
-
-    <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
+  <nav class="sidebar">
+    <ul class="menu-nav">
+      <li class="menu-nav__item"><a href="index.html">Home</a></li>
+      <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
+      <li class="menu-nav__item has-submenu">
+        <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
+        <ul class="submenu">
+          <li><a href="drmartensxraf.html">Dr. Martens × Raf Simons</a></li>
+          <li><a href="eastpakraf.html">Eastpak × Raf Simons</a></li>
+          <li><a href="adidasraf.html">Adidas × Raf Simons</a></li>
+          <li><a href="calvinklein.html">Calvin Klein 205W39NYC</a></li>
+        </ul>
+      </li>
+      <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
 
@@ -118,11 +150,22 @@
 
   <script src="./script.js"></script>
   <script>
-      // Initialize Notyf
-    const notyf = new Notyf({
-      duration: 2000,
+   const notyf = new Notyf({
+      duration: 3000,
       position: { x: 'right', y: 'top' },
-      dismissible: true
+      dismissible: true,
+      types: [
+        {
+          type: 'success',
+          background: '#000',               // black background
+          messageColor: '#fff',             // white text
+          icon: {
+            tagName: 'i',
+            className: 'fas fa-check-circle',
+            color: 'var(--accent-color)'   // accent red icon
+          }
+        }
+      ]
     });
     // 1) Cart icon behavior
     document.getElementById('cartIcon').onclick = () => location.href = 'cart.html';
@@ -418,7 +461,12 @@
           exists ? exists.qty++ : cart.push({ id:p.id, title:p.title, price:p.price, image:p.image, qty:1 });
           localStorage.setItem('cart', JSON.stringify(cart));
           // Fancy toast instead of alert
-          notyf.success('✔️ Added to cart');
+          notyf.success({
+  message: 'Added to cart. <a href="cart.html">View cart</a>',
+  duration: 3500,
+  dismissible: true,
+  ripple: false
+});
         });
 
         // GSAP hover
@@ -449,6 +497,56 @@
         : window.allProducts
       );
     };
+
+
+// cart hover img
+
+const cartIcon = document.getElementById('cartIcon');
+    const cartPreview = document.getElementById('cartPreview');
+
+    function updateCartPreview() {
+      const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      if (!cart.length) {
+        cartPreview.innerHTML = '<div class="cart-preview-empty">Your cart is empty</div>';
+      } else {
+        let html = cart.map((item, idx) => `
+  <div class="cart-preview-item">
+    <img src="${item.image}" alt="${item.title}">
+    <div class="item-text">
+      <div>${item.title}</div>
+      <div style="opacity:.7;">×${item.qty}</div>
+    </div>
+    <button class="remove-btn" data-idx="${idx}" title="Remove">&times;</button>
+  </div>
+`).join('');
+
+        html += `<div class="cart-preview-footer"><a href="cart.html">View cart →</a></div>`;
+        cartPreview.innerHTML = html;
+      }
+    }
+
+    cartIcon.addEventListener('mouseenter', ()=>{
+      updateCartPreview();
+      cartPreview.classList.add('visible');
+    });
+    cartIcon.addEventListener('mouseleave', ()=>cartPreview.classList.remove('visible'));
+    cartPreview.addEventListener('mouseenter', ()=>cartPreview.classList.add('visible'));
+    cartPreview.addEventListener('mouseleave', ()=>cartPreview.classList.remove('visible'));
+
+    cartPreview.addEventListener('click', e=>{
+      const btn = e.target.closest('.remove-btn');
+      if (!btn) return;
+      e.stopPropagation();
+      const idx = +btn.dataset.idx;
+      const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      cart.splice(idx,1);
+      localStorage.setItem('cart',JSON.stringify(cart));
+      updateCartPreview();
+    });
+
+    cartIcon.onclick = ()=> location.href='cart.html';
+
   </script>
+  
 </body>
 </html>

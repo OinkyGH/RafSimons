@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cart — Raf Simons Archive</title>
+
+  <!-- Tailwind CSS via CDN for utility classes -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
@@ -34,7 +38,6 @@
       display:flex; justify-content:flex-end;
       background:rgba(17,17,17,0.9);
     }
-
 
     main.content {
       padding: 5rem 2rem 2rem; /* leave room for fixed header */
@@ -92,26 +95,24 @@
       color: var(--accent-color);
     }
 
-
-    /* back button*/
+    /* back button */
     .back-btn {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  color: var(--text-light);
-  text-decoration: none;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
-  z-index: 1001;
-}
-.back-btn:hover {
-  color: var(--accent-color);
-}
-
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      z-index: 1001;
+    }
+    .back-btn:hover {
+      color: var(--accent-color);
+    }
   </style>
 </head>
 <body>
@@ -119,9 +120,8 @@
 
   <header class="header">
     <a href="shop.html" class="back-btn">
-  <i class="fas fa-arrow-left"></i> Back
-</a>
-
+      <i class="fas fa-arrow-left"></i> Back
+    </a>
     <div class="menu-btn">
       <div class="menu-btn__line"></div>
       <div class="menu-btn__line"></div>
@@ -129,7 +129,7 @@
     </div>
   </header>
 
-<nav class="sidebar">
+  <nav class="sidebar">
     <ul class="menu-nav">
       <li class="menu-nav__item"><a href="index.html">Home</a></li>
       <li class="menu-nav__item"><a href="biography.html">Biography</a></li>
@@ -137,9 +137,9 @@
         <a href="#" class="submenu-toggle">Collaborations <i class="fas fa-chevron-down"></i></a>
         <ul class="submenu">
           <li><a href="drmartensxraf.html">Dr. Martens × Raf Simons</a></li>
-          <li><a href="#eastpakraf.html">Eastpak × Raf Simons</a></li>
-          <li><a href="#">Adidas × Raf Simons</a></li>
-          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+          <li><a href="eastpakraf.html">Eastpak × Raf Simons</a></li>
+          <li><a href="adidasraf.html">Adidas × Raf Simons</a></li>
+          <li><a href="calvinklein.html">Calvin Klein 205W39NYC</a></li>
         </ul>
       </li>
       <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
@@ -152,8 +152,12 @@
     <div id="cartSummary"></div>
     <div id="checkoutMessage"></div>
   </main>
+
   <script src="./script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <script>
+    // Render cart and setup interactions
     function renderCart() {
       const cart = JSON.parse(localStorage.getItem('cart')||'[]');
       const cont = document.getElementById('cartContainer');
@@ -210,23 +214,66 @@
         renderCart();
       };
 
-      // Checkout
+      // Checkout button—now shows a fancy modal
       document.getElementById('checkoutBtn').onclick = ()=>{
         if(!cart.length){
           alert('Your cart is empty.');
           return;
         }
+        // Clear cart
         localStorage.removeItem('cart');
         renderCart();
-        document.getElementById('checkoutMessage').textContent = '✅ Purchase successful!';
+        showSuccessModal();
       };
     }
 
+    // Function to show animated success modal
+    function showSuccessModal() {
+  const modalOverlay = document.createElement('div');
+  modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modalOverlay.innerHTML = `
+    <div class="bg-[#111] rounded-2xl p-8 max-w-xs text-center transform">
+      <div class="text-4xl mb-4" style="color: var(--accent-color);">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2 class="text-xl font-semibold mb-2 text-white">Purchase Successful!</h2>
+      <p class="text-white mb-4">Thank you for your order</p>
+      <button id="closeModal" class="mt-2 px-4 py-2 rounded-full" style="background: var(--accent-color); color: #fff;">
+        Close
+      </button>
+    </div>
+  `;
+  document.body.appendChild(modalOverlay);
+
+  // pop-in animation
+  gsap.from(modalOverlay.querySelector('div'), {
+    duration: 0.6,
+    scale: 0,
+    ease: 'back.out(1.7)'
+  });
+
+  const closeBtn = modalOverlay.querySelector('#closeModal');
+  // hover effect
+  closeBtn.addEventListener('mouseenter', () => {
+    gsap.to(closeBtn, { scale: 1.1, duration: 0.2, ease: 'power1.out' });
+  });
+  closeBtn.addEventListener('mouseleave', () => {
+    gsap.to(closeBtn, { scale: 1, duration: 0.2, ease: 'power1.out' });
+  });
+
+  // close handler
+  closeBtn.onclick = () => {
+    gsap.to(modalOverlay.querySelector('div'), {
+      duration: 0.4,
+      scale: 0,
+      ease: 'back.in(1.7)',
+      onComplete: () => modalOverlay.remove()
+    });
+  };
+}
+
     // Initial load
     renderCart();
-
-    // Sidebar toggle (optional—if you have script.js handling it)
-   
   </script>
 </body>
 </html>

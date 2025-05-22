@@ -9,7 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <style>
-    :root {
+   :root {
       --accent-color: #e63946;
       --text-light: #eee;
       --easing: cubic-bezier(0.4, 0, 0.2, 1);
@@ -55,7 +55,7 @@
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.7);
-      z-index: 998; display: none;
+      z-index: 998; display: none; 
     }
     .overlay.active { display: block; }
 
@@ -73,8 +73,8 @@
     .season-imageD { margin-bottom: 0.5rem !important; }
     .season-info {
       visibility: visible !important;
-      margin-bottom: 1.5rem;
-      padding: 0 1rem;
+      margin-bottom: -3rem;
+      padding: 4rem;
     }
     .grail-text {
       color:var(--accent-color);
@@ -88,9 +88,10 @@
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
       gap:2rem;
-      padding:1rem 2rem 4rem;
+      padding: 1rem 2rem 2rem;
       max-width:1200px;
       margin:0 auto;
+      margin-top: 1rem;
     }
     .season-card {
       background:rgba(255,255,255,0.05);
@@ -138,7 +139,7 @@
     /* About Section */
     .content-section {
       max-width:800px;
-      margin:4rem auto 6rem;
+      margin:4rem auto 3rem;
       padding:0 1rem;
       line-height:1.6;
       position: relative;
@@ -149,28 +150,27 @@
       text-transform:uppercase; letter-spacing:.1em;
       color:var(--accent-color); margin-bottom:1rem; font-size:1.8rem;
     }
-
     .fade-in { opacity:0; }
     .popular-title {
       text-align: center;
       font-size: 2rem;
       color: var(--accent-color);
-      margin: 3rem 0 1rem;
       text-transform: uppercase;
       letter-spacing: .1em;
+      margin-top: 8rem !important; 
+      margin-bottom: 2rem !important;
     }
 
-    .image-caption {
+ .image-caption {
   text-align: center;
   font-size: 0.9rem;
   color: #666;
-  margin-top: -2rem;
+  margin-top: 0.75rem;
 }
 
   </style>
 </head>
 <body>
-
   <div class="overlay"></div>
   <header class="header">
     <a href="index.html" class="logo">RAF SIM0NS</a>
@@ -190,8 +190,8 @@
         <ul class="submenu">
           <li><a href="drmartensxraf.html">Dr. Martens × Raf Simons</a></li>
           <li><a href="eastpakraf.html">Eastpak × Raf Simons</a></li>
-          <li><a href="#">Adidas × Raf Simons</a></li>
-          <li><a href="#">Calvin Klein 205W39NYC</a></li>
+          <li><a href="adidasraf.html">Adidas × Raf Simons</a></li>
+          <li><a href="calvinklein.html">Calvin Klein 205W39NYC</a></li>
         </ul>
       </li>
       <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
@@ -202,23 +202,23 @@
     <!-- FEATURE -->
     <section class="season-featureD fade-in">
       <div class="season-imageD">
-        <img src="https://i.imgur.com/pfAvLeE.png" alt="Dr. Martens × Raf Simons Boot">
+        <img src="https://i.imgur.com/6pCRKus.png" alt="Dr. Martens × Raf Simons Boot">
       </div>
       <p class="image-caption">
-        Raf Simons 1460 Boot
+        Raf Simons Ozweego 3
       </p>
       <div class="season-info">
-        <h2>Dr. Martens × Raf Simons</h2>
-        <p class="grail-text">Limited-Edition Subculture Staple</p>
-        <p>In 2017, Raf Simons re-envisioned the iconic 1460 boot with deconstructed tongues, exposed stitching, and platform soles—bridging punk heritage and haute design</p>
+        <h2>adidas × Raf Simons</h2>
+        <p class="grail-text">Avant-Garde Footwear Revolution</p>
+        <p>Debuting in 2013, the Ozweego 3 redefined sneaker culture with its chunky silhouette, layered mesh and leather construction, and futuristic bubble detailing—merging high fashion with athletic heritage.</p>
       </div>
     </section>
 
     <!-- ABOUT -->
     <section class="content-section fade-in">
       <h2>About this Collab</h2>
-      <p>Dr. Martens’ air-cushioned sole has anchored underground style since 1960. Partnering with Raf Simons infused it with minimalist tailoring and bold deconstruction—limited runs that sold out instantly and now command collector prices.</p>
-      <p>Small batches and exclusive boutiques turned each drop into a cultural event—cementing it as one of the decade’s most celebrated designer collaborations.</p>
+      <p>Since 2013, Raf Simons and adidas have reshaped sneaker aesthetics, blending luxury craftsmanship with sportswear innovation. The collaboration introduced bold reinterpretations of classic silhouettes, pushing boundaries in design and cultural relevance.</p>
+      <p>Limited releases and experimental colorways turned each drop into a collector’s item, solidifying the partnership as one of the most influential in contemporary footwear.</p>
     </section>
 
 
@@ -229,19 +229,21 @@
   <section class="season-grid">
     <div class="season-card fade-in">
       <div class="card-content">
-        <a href="#"><img src="https://i.imgur.com/8XSziTL.png" alt="1460 Deconstructed"></a>
-        <h3>Raf Simons × Dr. Martens 1461</h3>
-        <p>Smooth leather upper, contrast heel loop, metal toe cap, triple-eyelet lacing, air-cushioned sole</p>
+        <img src="https://i.imgur.com/Yn4DqMO.png" alt="Stan Smith Comfort"></a>
+        <h3>Raf Simons × adidas Stan Smith Comfort</h3>
+        <p>Minimalist design, perforated ‘R’ branding, premium leather upper, Velcro strap closure</p>
       </div>
     </div>
     <div class="season-card fade-in">
       <div class="card-content">
-        <a href="#"><img src="https://i.imgur.com/oHCtjk9.png" alt="Jaden Platform Lo"></a>
-        <h3>2009 Raf Simons × Dr. Martens Sandals</h3>
-        <p>Strappy, gladiator-inspired design in premium leather with an imposing platform sole</p>
+        <img src="https://i.imgur.com/K95iA10.png" alt="Detroit Runner"></a>
+        <h3>Raf Simons × adidas Detroit Runner</h3>
+        <p>Hybrid sneaker-boot, canvas upper, exaggerated rubber sole, industrial-inspired aesthetic</p>
       </div>
     </div>
+
   </section>
+
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
@@ -343,4 +345,5 @@
       });
     });
   </script>
+ 
   
