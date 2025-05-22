@@ -141,6 +141,139 @@
     .carousel-thumbs .thumb:hover {
       opacity:1; border-color:#f05454;
     }
+    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+  @media (max-width: 1024px) {
+    .container {
+      margin-top: 5rem;
+      padding: 0 2rem;
+    }
+    
+    .carousel-arrow.left { left: 30px; }
+    .carousel-arrow.right { right: 30px; }
+    
+    h1 { font-size: 2.2rem; }
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 1rem; }
+    
+    .header {
+      padding: 0.75rem 1rem;
+    }
+    
+    .logo {
+      font-size: 1.1rem;
+      top: 14px;
+      left: 14px;
+    }
+    
+    .container {
+      margin-top: 4rem;
+      padding: 0 1.5rem;
+    }
+    
+    h1 { font-size: 2rem; }
+    
+    .carousel-image {
+    width: 100%;
+    padding: 0 10px; /* Prevents image touching arrows */
+  }
+    
+    .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(17,17,17,0.8);
+    border: 1px solid #f05454;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .carousel-arrow.left {
+    left: 5px;
+    right: auto;
+  }
+  
+  .carousel-arrow.right {
+    right: 5px;
+    left: auto;
+  }
+    
+    .carousel-thumbs {
+      justify-content: flex-start;
+      padding-bottom: 0.5rem;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      margin: 4rem 0 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 0.5rem; }
+    
+    .logo { font-size: 1rem; }
+    
+    .container {
+      margin-top: 3.5rem;
+      padding: 0 1rem;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .carousel-main {
+      gap: 0.5rem;
+    }
+    
+    .carousel-image {
+      max-width: 100%;
+      border-width: 1px;
+    }
+    
+    .carousel-thumbs .thumb {
+      width: 60px;
+      height: 60px;
+    }
+    
+    blockquote {
+      font-size: 0.95rem;
+      padding-left: 0.75rem;
+    }
+    
+    .section-title {
+      font-size: 1.6rem;
+      margin: 3rem 0 1rem;
+    }
+    
+    .image-caption {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    h1 { font-size: 1.6rem; }
+    
+    .section-title { font-size: 1.4rem; }
+    
+    .carousel-thumbs .thumb {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .menu-btn {
+      top: 20px;
+      right: 20px;
+    }
+  }
   </style>
 </head>
 <body>

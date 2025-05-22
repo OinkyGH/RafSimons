@@ -89,6 +89,73 @@
     .header-controls { position: relative; }
 
 
+    
+@media (max-width: 768px) {
+  .header {
+    height: 60px; /* Fixed header height */
+    padding: 0 15px;
+  }
+
+  .header .logo {
+    font-size: 1rem;
+    top: 18px;
+    left: 15px;
+    z-index: 1001;
+  }
+
+  /* Push content down below header */
+  .content {
+    margin-top: 70px !important;
+  }
+
+  /* Adjust menu button position */
+  .menu-btn {
+    top: 18px;
+    right: 15px;
+  }
+
+  /* Cart icon positioning */
+  #cartIcon {
+    position: absolute;
+    top: 18px;
+    right: 50px;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header .logo {
+    font-size: 0.9rem;
+    top: 20px;
+  }
+
+  .menu-btn {
+    top: 20px;
+  }
+
+  #cartIcon {
+    top: 20px;
+    right: 45px;
+  }
+}
+
+/* Additional responsive grid fixes */
+.season-grid {
+  padding: 0 15px !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.shop-card {
+  margin-bottom: 1.5rem;
+}
+
+/* Product image sizing */
+.shop-card img {
+  max-height: 220px !important;
+  width: auto !important;
+  margin: 0 auto !important;
+}
+
   </style>
 
 </head>
