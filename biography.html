@@ -93,54 +93,7 @@
 
   </style>
   <style>
-/* ===== MOBILE OPTIMIZATION ===== */
-@media (max-width: 768px) {
-  /* Header & Logo Adjustments */
-  .header {
-    height: 60px;
-    padding: 0 15px;
-  }
 
-  .logo {
-    font-size: 1rem;
-    left: 15px;
-    top: 18px;
-  }
-
-  /* Bio Grid Layout */
-  .bio-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .bio-portrait {
-    max-width: 80%;
-    margin: 0 auto;
-  }
-
-  /* Timeline Adjustments */
-  .timeline-item {
-    padding: 1rem 0;
-  }
-
-  .timeline-item h4 {
-    font-size: 1.1rem;
-  }
-
-  .timeline-item p {
-    font-size: 0.95rem;
-  }
-
-  /* Wiki Section */
-  .wiki-section {
-    padding: 2rem 1.5rem !important;
-    margin: 3rem auto !important;
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
-}
 
 @media (max-width: 480px) {
   /* Smaller Screens */
@@ -204,26 +157,37 @@
 <style>
 /* ===== MOBILE OPTIMIZATION ===== */
 @media (max-width: 768px) {
-  /* Header & Logo Adjustments */
-  .header {
+
+    .header {
     height: 60px;
     padding: 0 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 990;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .logo {
     font-size: 1rem;
     left: 15px;
-    top: 18px;
+    transform: translateY(-50%);
+    position: relative; /* Change from fixed to relative */
+    left: 0;
+    transform: none;
   }
 
   /* Bio Grid Layout */
   .bio-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding: 0 15px;
   }
 
   .bio-portrait {
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto;
   }
 
@@ -234,36 +198,43 @@
 
   .timeline-item h4 {
     font-size: 1.1rem;
+    margin-bottom: 0.3rem;
   }
 
   .timeline-item p {
     font-size: 0.95rem;
+    line-height: 1.5;
   }
 
   /* Wiki Section */
   .wiki-section {
-    padding: 2rem 1.5rem !important;
-    margin: 3rem auto !important;
+    padding: 1.5rem !important;
+    margin: 2rem 15px !important;
+    border-radius: 4px;
   }
 
   .section-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Menu Button Positioning */
+ .menu-btn {
+    position: relative;
+    right: 0 !important;
+    top: 0;
+    transform: none;
   }
 }
 
 @media (max-width: 480px) {
-  /* Smaller Screens */
   .logo {
     font-size: 0.9rem;
     left: 10px;
   }
 
-  .menu-btn {
-    right: 10px !important;
-  }
-
-  .bio-portrait {
-    max-width: 100%;
+  .bio-grid {
+    gap: 1rem;
   }
 
   .timeline-item {
@@ -271,43 +242,34 @@
   }
 
   .wiki-section {
-    padding: 1.5rem 1rem !important;
     font-size: 1rem !important;
+    line-height: 1.6;
   }
 
-  /* Link Underline Adjustments */
-  .link-animation::before {
-    bottom: -1px;
-    height: 1px;
+  .menu-btn__line {
+    width: 22px;
+    height: 2px;
   }
-}
-
-/* General Responsive Rules */
-.bio-grid {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 3rem;
-}
-
-.bio-portrait img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.wiki-content {
-  max-width: 100%;
-  overflow-wrap: break-word;
 }
 
 /* Touch Target Sizing */
-.menu-btn__line {
-  width: 25px;
-  height: 2px;
+.menu-nav__item a {
+  padding: 12px 15px;
 }
 
-.has-submenu > a {
-  padding-right: 25px;
+/* Mobile Image Optimization */
+.bio-portrait img {
+  height: auto;
+  max-width: 100%;
+  border-radius: 3px;
+}
+
+/* Force single column layout */
+@media (max-width: 768px) {
+  .bio-content, .bio-portrait {
+    grid-column: 1/-1;
+    width: 100%;
+  }
 }
 </style>
   
