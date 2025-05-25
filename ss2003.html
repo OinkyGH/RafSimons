@@ -15,10 +15,10 @@
   <style>
     .carousel-thumbs .thumb {
       opacity: 0; /* Start invisible */
-      visibility: visible !important; /* Force visibility */
-      transform: scale(0.8); /* Initial scaled-down state */
+      visibility: visible !important; 
+      transform: scale(0.8); 
     }
-    /* ===== FIXED MENU SYSTEM ===== */
+
     .menu-btn {
       position: fixed;
       top: 25px; right: 25px;
@@ -33,12 +33,12 @@
     .sidebar {
     position: fixed;
     top: 0;
-    right: -300px; /* Starts completely off-screen to the right */
+    right: -300px; 
     width: 300px;
     height: 100%;
     background: rgba(17, 17, 17, 0.98);
     padding: 80px 30px;
-    transition: right 0.4s var(--easing); /* Animate right property */
+    transition: right 0.4s var(--easing); 
     z-index: 999;
 }
     .sidebar.active { right:0; }
@@ -71,7 +71,7 @@
     .has-submenu.open .submenu { max-height:500px; }
     .submenu-toggle i { transition: transform 0.3s ease; margin-left:8px; }
     .has-submenu.open .submenu-toggle i { transform: rotate(180deg); }
-    /* ===== EXISTING CONTENT STYLES ===== */
+    
     body {
       font-family: 'Inter', sans-serif; background-color: #111; color: #eee;
       margin:0; padding:2rem; line-height:1.6;
@@ -140,7 +140,7 @@
     .carousel-thumbs .thumb:hover {
       opacity:1; border-color:#f05454;
     }
-    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+   
   @media (max-width: 1024px) {
     .container {
       margin-top: 5rem;
@@ -175,7 +175,7 @@
     
    .carousel-image {
     width: 100%;
-    padding: 0 10px; /* Prevents image touching arrows */
+    padding: 0 10px; 
   }
     
      .carousel-arrow {

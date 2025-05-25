@@ -13,15 +13,14 @@
   <script src="js/transitions.js"></script> 
   <script src="./script.js"></script>
   <style>
-  /* Add this CSS override */
   .carousel-thumbs .thumb {
-    opacity: 0; /* Start invisible */
-    visibility: visible !important; /* Force visibility */
-    transform: scale(0.8); /* Initial scaled-down state */
+    opacity: 0; 
+    visibility: visible !important; 
+    transform: scale(0.8); 
   }
 </style>
   <style>
-    /* ===== FIXED MENU SYSTEM ===== */
+
     .menu-btn {
       position: fixed;
       top: 25px;
@@ -57,12 +56,12 @@
    .sidebar {
     position: fixed;
     top: 0;
-    right: -300px; /* Starts completely off-screen to the right */
+    right: -300px; 
     width: 300px;
     height: 100%;
     background: rgba(17, 17, 17, 0.98);
     padding: 80px 30px;
-    transition: right 0.4s var(--easing); /* Animate right property */
+    transition: right 0.4s var(--easing); 
     z-index: 999;
 }
 
@@ -105,7 +104,6 @@
       transform: rotate(180deg);
     }
 
-    /* ===== EXISTING CONTENT STYLES ===== */
     body {
       font-family: 'Inter', sans-serif;
       background-color: #111;
@@ -273,7 +271,7 @@
 }
     .logo { font-size:1.2rem; font-weight:600; color:#eee; text-decoration:none; cursor:pointer; transition:opacity .3s ease; }
     .logo:hover { opacity:.8; color:#f05454; }
-    /* ===== RESPONSIVE ADJUSTMENTS ===== */
+
   @media (max-width: 1024px) {
     .container {
       margin-top: 5rem;
@@ -308,7 +306,7 @@
     
      .carousel-image {
     width: 100%;
-    padding: 0 10px; /* Prevents image touching arrows */
+    padding: 0 10px; 
   }
     
      .carousel-arrow {
@@ -410,7 +408,6 @@
 </head>
 <body>
   <div class="transition-overlay"></div>
-  <!-- Fixed Menu System -->
   <div class="overlay"></div>
   
 <header class="header">
@@ -438,7 +435,6 @@
     <li class="menu-nav__item"><a href="shop.html">Shop</a></li>
   </ul>
 </nav>
-  <!-- Page Content -->
   <div class="container" data-aos="fade-up">
     <h1>FW2001 – Riot! Riot! Riot!</h1>
 
@@ -499,7 +495,7 @@
 
    
 
-      // Close submenus when clicking outside
+
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.has-submenu')) {
           document.querySelectorAll('.has-submenu').forEach(item => {
@@ -586,7 +582,7 @@
       }
     });
 
-    // Animate individual carousel thumbs
+
    // Modified thumbnail animation
     gsap.utils.toArray(".thumb").forEach((thumb, i) => {
       gsap.from(thumb, {
@@ -603,7 +599,6 @@
         }
       });
     });
-    // Animate blockquote
     gsap.from("blockquote", {
       opacity: 0,
       x: -60,

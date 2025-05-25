@@ -20,7 +20,7 @@
     }
     .overlay.active { display: block; }
 
-    /* ===== LOGO STYLES ===== */
+
     .logo {
       font-size: 1.2rem; font-weight: 600;
       color: #eee; text-decoration: none;
@@ -141,7 +141,7 @@
   }
 }
 
-/* Additional responsive grid fixes */
+
 .season-grid {
   padding: 0 15px !important;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -151,7 +151,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Product image sizing */
+
 .shop-card img {
   max-height: 220px !important;
   width: auto !important;
@@ -163,9 +163,6 @@
 </head>
 <body>
   <div class="overlay"></div>
-
-
-  <!-- Header with Menu + Cart Icon -->
   <header class="header">
     <div class="header-controls">
       <i id="cartIcon" class="fas fa-shopping-cart"></i>
@@ -179,7 +176,7 @@
     </div>
   </header>
 
-  <!-- Sidebar Navigation -->
+
   <nav class="sidebar">
     <ul class="menu-nav">
       <li class="menu-nav__item"><a href="index.html">Home</a></li>
@@ -198,7 +195,6 @@
   </nav>
 
   <main class="content">
-    <!-- Page Title + Season Filter -->
     <section style="text-align:center; padding:2rem 0;">
       <h1 style="letter-spacing:0.2em; text-transform:uppercase;">Shop</h1>
       <select class="season-selector" id="seasonFilter" style="max-width:200px; margin:1rem auto; display:block;">
@@ -213,9 +209,7 @@
       </select>
     </section>
 
-    <!-- Products Grid -->
     <section class="season-grid" id="productsGrid" style="padding-bottom:4rem;">
-      <!-- JS will inject .shop-card items here -->
     </section>
   </main>
 
@@ -228,21 +222,21 @@
       types: [
         {
           type: 'success',
-          background: '#000',               // black background
-          messageColor: '#fff',             // white text
+          background: '#000',              
+          messageColor: '#fff',           
           icon: {
             tagName: 'i',
             className: 'fas fa-check-circle',
-            color: 'var(--accent-color)'   // accent red icon
+            color: 'var(--accent-color)'   
           }
         }
       ]
     });
-    // 1) Cart icon behavior
+    //Cart icon behavior
     document.getElementById('cartIcon').onclick = () => location.href = 'cart.html';
     
 
-    // 2) Define your products manually here:
+    // Library of Products
     const products = [
       {
         id: 1,
@@ -495,7 +489,7 @@
       
     ];
 
-    // 3) Save for detail page and initial render
+    //Save for detail page and initial render
     localStorage.setItem('allProducts', JSON.stringify(products));
     window.allProducts = products;
     renderProducts(products);
@@ -531,13 +525,13 @@
           const exists = cart.find(i=>i.id===p.id);
           exists ? exists.qty++ : cart.push({ id:p.id, title:p.title, price:p.price, image:p.image, qty:1 });
           localStorage.setItem('cart', JSON.stringify(cart));
-          // Fancy toast instead of alert
+          // Fancy toast 
           notyf.success({
-  message: 'Added to cart. <a href="cart.html">View cart</a>',
-  duration: 3500,
-  dismissible: true,
-  ripple: false
-});
+          message: 'Added to cart. <a href="cart.html">View cart</a>',
+          duration: 3500,
+          dismissible: true,
+          ripple: false
+          });
         });
 
         // GSAP hover

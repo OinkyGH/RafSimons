@@ -4,13 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Product Details — Raf Simons Archive</title>
-
-  <!-- Core styles -->
   <link rel="stylesheet" href="./style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"/>
-
-  <!-- GSAP & Notyf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
@@ -29,7 +25,7 @@
       overflow-x: hidden;
     }
 
-    /* Header & Sidebar (same as shop) */
+
     .logo {
       position: absolute; left: 16px; top:16px;
       font-size:1.2rem; font-weight:600; color:var(--text-light);
@@ -39,7 +35,7 @@
 .header .logo {
       position: absolute; top: 0px; left: 0px; z-index: 1001;
     }
-    /* Notyf link styling */
+
     .notyf__toast--success a {
       color: #fff;
       text-decoration: underline;
@@ -47,7 +43,7 @@
       font-size: .9rem;
     }
 
-    /* Main content */
+
     main.content {
       padding: 6rem 2rem 2rem; max-width: 1000px; margin:0 auto;
     }
@@ -126,7 +122,7 @@
   <style>
 /* ===== MOBILE OPTIMIZATION ===== */
 @media (max-width: 768px) {
-  /* Header Adjustments */
+
   .header {
     height: 60px;
     padding: 0 15px;
@@ -138,7 +134,7 @@
     top: 18px;
   }
 
-  /* Product Grid */
+
   .product-grid {
     gap: 1.5rem;
     padding: 0 1rem;
@@ -153,7 +149,7 @@
     font-size: 1.2rem;
   }
 
-  /* Image Containment */
+
   .product-image img {
     max-height: 60vh;
     width: auto;
@@ -161,7 +157,7 @@
     display: block;
   }
 
-  /* Cart Preview */
+
   .cart-preview {
     width: 90vw;
     right: 5vw;
@@ -170,7 +166,7 @@
 }
 
 @media (max-width: 480px) {
-  /* Smaller Screens */
+
   .logo {
     font-size: 0.9rem;
     left: 10px;
@@ -185,20 +181,20 @@
     margin-bottom: 1.5rem;
   }
 
-  /* Button Adjustments */
+
   .chronicle-button {
     padding: 12px 24px;
     font-size: 1rem;
   }
 
-  /* Cart Preview Items */
+
   .cart-preview-item img {
     width: 48px;
     height: 48px;
   }
 }
 
-/* General Mobile Enhancements */
+
 @media (hover: none) {
   .chronicle-button {
     transform: none !important;
@@ -216,7 +212,7 @@
 <body>
   <div class="overlay"></div>
 
-  <!-- Header -->
+
   <header class="header">
     <div class="header-controls">
       <i id="cartIcon" class="fas fa-shopping-cart"></i>
@@ -230,7 +226,7 @@
     </div>
   </header>
 
-  <!-- Sidebar -->
+
   <nav class="sidebar">
     <ul class="menu-nav">
       <li class="menu-nav__item"><a href="index.html">Home</a></li>
@@ -248,12 +244,11 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
+
   <main class="content">
     <a href="shop.html" class="back-link"><i class="fas fa-arrow-left"></i>Back to Shop</a>
 
     <div id="productDetails" class="product-grid">
-      <!-- JS will inject image & details here -->
     </div>
   </main>
   <script src="./script.js"></script>
@@ -276,7 +271,6 @@
       }]
     });
 
-    // Toggle sidebar omitted...
 
     // Cart icon
     document.getElementById('cartIcon').onclick = () => location.href='cart.html';

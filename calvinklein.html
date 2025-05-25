@@ -15,7 +15,6 @@
       --easing: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Header + Logo */
     .header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -43,7 +42,6 @@
       color: var(--accent-color);
     }
 
-    /* Body & Overlay */
     body {
       padding-top: 4rem;
       margin: 0;
@@ -59,7 +57,6 @@
     }
     .overlay.active { display: block; }
 
-    /* Feature Section */
     .season-featureD {
       display:flex; flex-direction:column; align-items:center;
       text-align:center;
@@ -83,7 +80,6 @@
       font-size:1.2rem;
     }
 
-    /* Enhanced Cards Grid */
     .season-grid {
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -126,7 +122,6 @@
     .season-card h3 { font-size:1.3rem; margin-bottom:.75rem; color: var(--text-light); }
     .season-card p  { font-size:1rem; line-height:1.4; color: rgba(255,255,255,0.8); }
 
-    /* Hover Effects */
     .season-card:hover {
       border-color: rgba(230,57,70,0.6);
       transform: translateY(-5px);
@@ -136,7 +131,6 @@
     .season-card:hover .card-content { transform: scale(0.98); }
     .season-card:hover img { transform: scale(1.05) rotate(2deg); }
 
-    /* About Section */
     .content-section {
       max-width:800px;
       margin:4rem auto 3rem;
@@ -167,9 +161,8 @@
   color: #666;
   margin-top: -1.5rem;
 }
-/* Existing styles... */
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .header {
     padding: 0.75rem 1rem;
@@ -312,11 +305,9 @@
   </nav>
 
   <main class="content">
-    <!-- FEATURE -->
     <section class="season-featureD fade-in">
       <div class="season-imageD">
         <main>
-            <!-- Main Iconic Piece: Calvin Klein 205W39NYC -->
             <section class="hero-item fade-in">
                 <img src="https://i.imgur.com/3MNWRpA.png" alt="Calvin Klein 205W39NYC Steel Toe Western Boots">
                 <p class="image-caption">
@@ -331,7 +322,6 @@
                 </div>
               </section>
             
-              <!-- About the Collaboration -->
               <section class="content-section fade-in">
                 <h2>About This Collab</h2>
                 <p>
@@ -342,7 +332,6 @@
                 </p>
               </section>
             
-              <!-- Other Iconic Collab Pieces -->
               <h2 class="popular-title fade-in" style="text-align:center; margin-top: 2rem;">Other Key Releases</h2>
               <section class="season-grid">
                 <div class="season-card fade-in">
@@ -372,7 +361,6 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
   
-    // Hero section
     gsap.to('.season-featureD', {
       opacity: 1,
       y: 0,
